@@ -21,6 +21,7 @@
 
 body {
   background-color: #dedede;
+  overflow-x: hidden;
 }
 
 header {
@@ -31,6 +32,10 @@ header {
   align-items: center;
   justify-content: center;
   border-radius: 0 0 1rem 1rem;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  z-index: 99;
 }
 
 .content-header {
@@ -65,8 +70,53 @@ a:hover {
 }
 
 h1 {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   font-weight: 800;
   color: var(--primary-color);
   text-align: center;
+}
+
+#bg-video {
+  width: 100vw;
+  height: 80vh;
+  object-fit: cover;
+  filter: blur(1px) brightness(0.2);
+  position: absolute;
+  z-index: -1;
+  top: 0%;
+  left: 0%;
+}
+
+.content-hero {
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8vh;
+}
+
+.content-hero p {
+  color: var(--secondary-color);
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+  max-width: 600px;
+  text-align: center;
+}
+
+.btns {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.btn {
+  background-color: var(--primary-color);
+  padding: 1rem 1.4rem;
+  border-radius: 12px;
+  font-size: var(--font-size-md);
+}
+
+span {
+  color: var(--primary-color);
 }
