@@ -56,6 +56,7 @@ a {
   color: var(--secondary-color);
   text-decoration: none;
   font-weight: 200;
+  transition: 0.1s;
 }
 
 a:hover {
@@ -119,4 +120,32 @@ h1 {
 
 span {
   color: var(--primary-color);
+}
+
+.necessity-section,
+.donation-section {
+  width: 94rem;
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+
+.group-card {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.card {
+  width: 30rem;
+  background-color: var(--secondary-color);
+  flex: 1 1 calc(33.333% - 2rem);
+}
+
+.img-card {
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
 }
