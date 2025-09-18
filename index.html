@@ -1,146 +1,123 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>HelpConnect</title>
-  </head>
-  <body>
-    <header>
-      <div class="content-header">
-        <a href="#"
-          ><img
-            src="./assets/img/icon/logo.svg"
-            alt="logo do site"
-            class="logo"
-        /></a>
-        <nav class="menu">
-          <a href="">Nessidades</a><a href="">Doações</a><a href="">Sobre</a>
-        </nav>
-        <div class="login-btn">
-          <a href="">Fazer login / Cadastrar</a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="shortcut icon" href="./assets/img/icon/logo.svg" type="image/x-icon">
+  <title>HelpConnect</title>
+</head>
+
+<body>
+  <header>
+    <a href="#"><img src="./assets/img/icon/logo.svg" alt="logo do site" class="logo" /></a>
+    <nav class="menu">
+      <a href="">Necessidades</a><a href="">Doações</a><a href="">Sobre</a>
+    </nav>
+    <div class="login-btn" style="display: none;">
+      <a href="">Fazer login / Cadastrar</a>
+    </div>
+    <a href=""><img src="https://placehold.co/400" alt="foto do usuario" class="user-img" /></a>
+  </header>
+  <main>
+    <section class="hero-section">
+      <video autoplay muted loop playsinline poster="fallback.jpg" id="bg-video">
+        <source src="./assets/img/video/background-video.mp4" type="video/mp4" />
+      </video>
+      <div class="headline">
+        <h1>HelpConnect</h1>
+        <p>
+          Conectando quem <span>precisa</span> com quem
+          <span>pode</span> ajudar.
+        </p>
+        <div class="btns">
+          <a href="" class="btn">Quero ajudar</a>
+          <a href="" class="btn">Quero ser ajudado</a>
         </div>
-        <a href=""
-          ><img
-            src="https://placehold.co/400"
-            alt="foto do usuario"
-            class="user-img"
-        /></a>
       </div>
-    </header>
-    <main>
-      <section class="hero-section">
-        <video
-          autoplay
-          muted
-          loop
-          playsinline
-          poster="fallback.jpg"
-          id="bg-video"
-        >
-          <source
-            src="./assets/img/video/background-video.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div class="content-hero">
-          <h1>HelpConnect</h1>
-          <p>
-            Conectando quem <span>precisa</span> com quem
-            <span>pode</span> ajudar.
-          </p>
-          <div class="btns">
-            <a href="" class="btn">Quero ajudar</a>
-            <a href="" class="btn">Quero ser ajudado</a>
+    </section>
+    <section class="necessity-section">
+      <h2>Últimas Necessidades</h2>
+      <div class="group-card">
+        <a href="" class="card">
+          <img src="./assets/img/provisorio/Rectangle 10.png" alt="imagem de necessidade" class="img-card" />
+          <div class="content-card">
+            <h3 class="title-card">Lorem ipsum dolor sit amet consectetur </h3>
+            <img src="./assets/img/icon/right-arrow.svg" alt="" class="icon-arrow" />
           </div>
+        </a>
+        <a href="" class="card">
+          <img src="./assets/img/provisorio/Rectangle 12.png" alt="imagem de necessidade" class="img-card" />
+          <div class="content-card">
+            <h3 class="title-card">Lorem ipsum dolor sit amet consectetur </h3>
+            <img src="./assets/img/icon/right-arrow.svg" alt="" class="icon-arrow" />
+          </div>
+        </a>
+        <a href="" class="card">
+          <img src="./assets/img/provisorio/Rectangle 14.png" alt="imagem de necessidade" class="img-card" />
+          <div class="content-card">
+            <h3 class="title-card">Lorem ipsum dolor sit amet consectetur </h3>
+            <img src="./assets/img/icon/right-arrow.svg" alt="" class="icon-arrow" />
+          </div>
+        </a>
+      </div>
+    </section>
+    <section class="donation-section">
+      <h2>Últimas Doações</h2>
+      <div class="group-card">
+        <a href="" class="card">
+          <img src="./assets/img/provisorio/Rectangle 16.png" alt="imagem de doação" class="img-card" />
+          <div class="content-card">
+            <h3 class="title-card">Lorem ipsum dolor sit amet consectetur </h3>
+            <img src="./assets/img/icon/right-arrow.svg" alt="" class="icon-arrow" />
+          </div>
+        </a>
+        <a href="" class="card">
+          <img src="./assets/img/provisorio/Rectangle 18.png" alt="imagem de doação" class="img-card" />
+          <div class="content-card">
+            <h3 class="title-card">Lorem ipsum dolor sit amet consectetur </h3>
+            <img src="./assets/img/icon/right-arrow.svg" alt="" class="icon-arrow" />
+          </div>
+        </a>
+        <a href="" class="card">
+          <img src="./assets/img/provisorio/Rectangle 20.png" alt="imagem de doação" class="img-card" />
+          <div class="content-card">
+            <h3 class="title-card">Lorem ipsum dolor sit amet consectetur </h3>
+            <img src="./assets/img/icon/right-arrow.svg" alt="" class="icon-arrow" />
+          </div>
+        </a>
+      </div>
+    </section>
+    <section class="how-work">
+      <h2>Como funciona</h2>
+      <div class="content-work">
+        <div class="card-work">
+          <div class="circle"></div>
+          <h3>Cadastre-se</h3>
+          <p>Crie sua conta como pessoa ou ONG. É rápido e gratuito.</p>
         </div>
-      </section>
-      <section class="necessity-section">
-        <h2>Últimas Necessidades</h2>
-        <div class="group-card">
-          <a href="" class="card">
-            <img
-              src="https://placehold.jp/3d4070/ffffff/150x150.png"
-              alt="imagem de necessidade"
-              class="img-card"
-            />
-            <div class="content-card">
-              <h3 class="title-card"></h3>
-              <img src="" alt="" class="icon-arrow" />
-            </div>
-          </a>
-          <a href="" class="card">
-            <img
-              src="https://placehold.jp/3d4070/ffffff/150x150.png"
-              alt="imagem de necessidade"
-              class="img-card"
-            />
-            <div class="content-card">
-              <h3 class="title-card"></h3>
-              <img src="" alt="" class="icon-arrow" />
-            </div>
-          </a>
-          <a href="" class="card">
-            <img
-              src="https://placehold.jp/3d4070/ffffff/150x150.png"
-              alt="imagem de necessidade"
-              class="img-card"
-            />
-            <div class="content-card">
-              <h3 class="title-card"></h3>
-              <img src="" alt="" class="icon-arrow" />
-            </div>
-          </a>
+
+        <div class="card-work">
+          <div class="circle"></div>
+          <h3>Publique seu Pedido ou Doação</h3>
+          <p>Descreva o que você precisa ou o que deseja doar.</p>
         </div>
-      </section>
-      <section class="donation-section">
-        <h2>Últimas Doações</h2>
-        <div class="group-card">
-          <a href="" class="card">
-            <img
-              src="https://placehold.jp/3d4070/ffffff/150x150.png"
-              alt="imagem de doação"
-              class="img-card"
-            />
-            <div class="content-card">
-              <h3 class="title-card"></h3>
-              <img src="" alt="" class="icon-arrow" />
-            </div>
-          </a>
-          <a href="" class="card">
-            <img
-              src="https://placehold.jp/3d4070/ffffff/150x150.png"
-              alt="imagem de doação"
-              class="img-card"
-            />
-            <div class="content-card">
-              <h3 class="title-card"></h3>
-              <img src="" alt="" class="icon-arrow" />
-            </div>
-          </a>
-          <a href="" class="card">
-            <img
-              src="https://placehold.jp/3d4070/ffffff/150x150.png"
-              alt="imagem de doação"
-              class="img-card"
-            />
-            <div class="content-card">
-              <h3 class="title-card"></h3>
-              <img src="" alt="" class="icon-arrow" />
-            </div>
-          </a>
+
+        <div class="card-work">
+          <div class="circle"></div>
+          <h3>Conecte-se com a Comunidade</h3>
+          <p>Outros usuários podem ver sua publicação e entrar em contato direto com você para ajudar.</p>
         </div>
-      </section>
-      <section class="how-work">
-        <h2>Como Funciona</h2>
-      </section>
-    </main>
-    <footer>
-      <a href=""
-        ><img src="./assets/img/icon/logo.svg" alt="" class="logo" />
-        <p>HelpConnect</p></a
-      >
-    </footer>
-  </body>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class=""></div>
+    <a href="" class="logo-footer"><img src="./assets/img/icon/logo.svg" alt="" class="logo" />
+      <p>HelpConnect</p>
+    </a>
+  </footer>
+</body>
+
 </html>
