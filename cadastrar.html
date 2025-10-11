@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - HelpConnect</title>
+    <link rel="stylesheet" href="./assets/css/provisorio.css">
+</head>
+<body>
+    <div class="login-container multi-step"> 
+        <header>
+            <h1>HelpConnect</h1>
+            <h2>Crie sua Conta (Passo <span id="current-step-display">1</span> de 3)</h2>
+        </header>
+        
+        <form id="cadastroForm" class="cadastro-form" action="#" method="POST">
+            
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="step active" data-step="1">
+                <p class="step-title">Informações Básicas</p>
+
+                <div class="input-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Seu nome">
+                </div>
+
+                <div class="input-group">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" id="cidade" name="cidade" required placeholder="Sua cidade">
+                </div>
+
+                <button type="button" class="btn-next btn-login" data-next-step="2">Próximo</button>
+            </div>
+
+            <div class="step" data-step="2">
+                <p class="step-title">Detalhes de Contato</p>
+
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="seu.email@exemplo.com">
+                </div>
+                
+                <div class="input-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999">
+                </div>
+
+                <div class="actions">
+                    <button type="button" class="btn-prev btn-login secondary-btn" data-prev-step="1">Anterior</button>
+                    <button type="button" class="btn-next btn-login" data-next-step="3">Próximo</button>
+                </div>
+            </div>
+
+            <div class="step" data-step="3">
+                <p class="step-title">Senha de Acesso</p>
+
+                <div class="input-group password-group"> <label for="password">Crie uma Senha</label>
+                    <div class="password-wrapper"> <input type="password" id="password" name="password" required placeholder="Mínimo de 8 caracteres">
+                        <button type="button" id="togglePassword" class="toggle-password" aria-label="Mostrar Senha">
+                            👁️
+                        </button>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button type="button" class="btn-prev btn-login secondary-btn" data-prev-step="2">Anterior</button>
+                    <button type="submit" class="btn-login" style="background-color: var(--tertiary-color);">Finalizar Cadastro</button>
+                </div>
+            </div>
+            
+        </form>
+        <div class="links-adicionais">
+            Já tem uma conta? <a href="login.html">Faça Login</a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('cadastroForm');
+            const steps = form.querySelectorAll('.step');
+            const stepDisplay = document.getElementById('current-step-display');
+            const progressBar = document.getElementById('progressBar');
+            let currentStep = 1;
+            const totalSteps = steps.length;
+
+            function updateStep(newStep) {
+                // Validação básica (mantida para funcionalidade de navegação)
+                if (newStep > currentStep) {
+                    const currentInputs = steps[currentStep - 1].querySelectorAll('[required]');
+                    let isValid = true;
+                    currentInputs.forEach(input => {
+                        if (!input.value) isValid = false;
+                    });
+                    if (!isValid) {
+                        alert('Por favor, preencha todos os campos obrigatórios.');
+                        return;
+                    }
+                }
+
+                currentStep = newStep;
+
+                steps.forEach(step => {
+                    step.classList.remove('active');
+                    if (parseInt(step.getAttribute('data-step')) === currentStep) {
+                        step.classList.add('active');
+                    }
+                });
+
+                stepDisplay.textContent = currentStep;
+                const progress = (currentStep / totalSteps) * 100;
+                progressBar.style.width = progress + '%';
+            }
+
+            form.addEventListener('click', (e) => {
+                if (e.target.classList.contains('btn-next')) {
+                    const nextStep = parseInt(e.target.getAttribute('data-next-step'));
+                    updateStep(nextStep);
+                } else if (e.target.classList.contains('btn-prev')) {
+                    const prevStep = parseInt(e.target.getAttribute('data-prev-step'));
+                    updateStep(prevStep);
+                }
+            });
+
+            // --- NOVO: Funcionalidade de Mostrar/Esconder Senha ---
+            const togglePasswordButton = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+
+            if (togglePasswordButton && passwordInput) {
+                togglePasswordButton.addEventListener('click', function () {
+                    // Alterna o tipo de input entre 'password' e 'text'
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    
+                    // Altera o ícone para indicar o estado
+                    this.textContent = (type === 'text') ? '🔒' : '👁️'; 
+                    this.setAttribute('aria-label', (type === 'text') ? 'Ocultar Senha' : 'Mostrar Senha');
+                });
+            }
+            // ------------------------------------------------------
+
+            // Inicializa a barra de progresso
+            updateStep(1); 
+        });
+    </script>
+</body>
+</html>
