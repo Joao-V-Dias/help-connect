@@ -5,9 +5,8 @@ session_start();
 		$fun = $_GET["fun"];
 		
 		if($fun == "cadastrar"){
-			// Desenvolver esta funcao primeiro
 			include_once("controle/CadastrarUsuario_class.php");
-			$pag = new CadastrarContato();
+			$pag = new CadastrarUsuario();
 			
 		} elseif($fun == "alterar"){
 			include_once("controle/AlterarContato_class.php");

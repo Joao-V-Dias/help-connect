@@ -157,7 +157,7 @@
       <div class="form-links">
         <a href="#">Esqueci minha senha</a>
         <span>|</span>
-        <a href="cadastrar.php">Criar uma conta</a>
+        <a href="?url=cadastrar">Criar uma conta</a>
       </div>
     </div>
   </body>

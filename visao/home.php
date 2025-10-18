@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./visao/assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <link
       rel="shortcut icon"
       href="./assets/img/icon/logo.svg"
@@ -20,10 +20,10 @@
       <nav class="menu">
         <a href="">Necessidades</a><a href="">Doações</a><a href="">Sobre</a>
       </nav>
-      <div class="login-btn" style="">
-        <a href="./visao/login.php">Fazer login</a>
+      <div class="login-btn">
+        <a href="?url=login">Fazer login</a>
       </div>
-      <a style="display: none" href=""
+      <a href=""
         ><img
           src="https://placehold.co/400"
           alt="foto do usuario"
@@ -32,13 +32,7 @@
     </header>
     <main>
       <section class="hero-section">
-        <video
-          autoplay
-          muted
-          loop
-          playsinline
-          id="bg-video"
-        >
+        <video autoplay muted loop playsinline id="bg-video">
           <source
             src="./assets/img/video/background-video.mp4"
             type="video/mp4"
@@ -217,4 +211,3 @@
     </footer>
   </body>
 </html>
-

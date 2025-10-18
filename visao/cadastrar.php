@@ -242,11 +242,11 @@
           <button type="button" class="form-button" onclick="prevStep()">
             Voltar
           </button>
-          <button type="submit" class="form-button" disable>Finalizar Cadastro</button>
+          <button type="submit" class="form-button">Finalizar Cadastro</button>
         </div>
       </form>
       <div class="form-links">
-        Já tem uma conta? <a href="login.html">Faça Login</a>
+        Já tem uma conta? <a href="?url=login">Faça Login</a>
       </div>
     </div>
 

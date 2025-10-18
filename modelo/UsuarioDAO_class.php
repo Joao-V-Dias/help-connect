@@ -13,8 +13,8 @@
 		public function cadastrar($cont){
 			try{
 				$stmt = $this->con->prepare(
-				"INSERT INTO usuario(nome, email, telefone, cidade, senha)
-				VALUES (:nome, :email, :telefone, :cidade, :senha)");
+				"INSERT INTO usuario(nome, email, telefone, cidade, senha, foto)
+				VALUES (:nome, :email, :telefone, :cidade, :senha, :foto)");
 				$stmt->bindValue(":nome", $cont->getNome());
 				$stmt->bindValue(":email", $cont->getEmail());
 				$stmt->bindValue(":telefone", $cont->getTelefone());
