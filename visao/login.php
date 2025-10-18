@@ -149,7 +149,6 @@
             id="password"
             name="password"
             required
-            placeholder="Mínimo de 8 caracteres"
           />
         </div>
         <button type="submit" class="form-button">Entrar</button>

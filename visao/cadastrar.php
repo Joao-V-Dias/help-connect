@@ -89,20 +89,23 @@
       }
 
       .form-button {
+        width: 100%;
         background-color: var(--primary-color);
         color: var(--secondary-color);
         border: none;
-        padding: 0.9rem;
+        padding: 0.6rem;
         border-radius: 5px;
         font-size: var(--font-size-md);
-        font-weight: 500;
+        font-weight: 400;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: 0.3s ease;
         margin-top: 1rem;
       }
 
       .form-button:hover {
         background-color: var(--quaternary-color);
+        transform: translateY(-2px);
+        box-shadow: 0px 5px 17px 0px var(--quaternary-color);
       }
 
       .form-links {
@@ -224,7 +227,7 @@
             <input
               type="password"
               id="password"
-              name="password"
+              name="senha"
               required
               placeholder="Mínimo de 8 caracteres"
             />
@@ -234,7 +237,7 @@
             <input
               type="password"
               id="confirmPassword"
-              name="confirmPassword"
+              name="confirmarSenha"
               required
               placeholder="Confirme sua senha"
             />
@@ -242,7 +245,7 @@
           <button type="button" class="form-button" onclick="prevStep()">
             Voltar
           </button>
-          <button type="submit" class="form-button">Finalizar Cadastro</button>
+          <button type="submit" class="form-button" name="enviar">Finalizar Cadastro</button>
         </div>
       </form>
       <div class="form-links">
@@ -277,6 +280,22 @@
           updateStep();
         }
       }
+      const passwordInput = document.getElementById("password");
+      const confirmPasswordInput = document.getElementById("confirmPassword");
+      const submitButton = document.querySelector("button[type='submit']");
+
+      function validatePasswords() {
+        if (passwordInput.value !== confirmPasswordInput.value) {
+          confirmPasswordInput.style.borderColor = "red";
+          submitButton.disabled = true;
+        } else {
+          confirmPasswordInput.style.borderColor = "";
+          submitButton.disabled = false;
+        }
+      }
+
+      confirmPasswordInput.addEventListener("input", validatePasswords);
+      passwordInput.addEventListener("input", validatePasswords);
     </script>
   </body>
 </html>

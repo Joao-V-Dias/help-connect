@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./visao/assets/css/style.css" />
     <link
       rel="shortcut icon"
       href="./assets/img/icon/logo.svg"
@@ -15,7 +15,7 @@
   <body>
     <header>
       <a href="#"
-        ><img src="./assets/img/icon/logo.svg" alt="logo do site" class="logo"
+        ><img src="./visao/assets/img/icon/logo.svg" alt="logo do site" class="logo"
       /></a>
       <nav class="menu">
         <a href="">Necessidades</a><a href="">Doações</a><a href="">Sobre</a>
@@ -34,7 +34,7 @@
       <section class="hero-section">
         <video autoplay muted loop playsinline id="bg-video">
           <source
-            src="./assets/img/video/background-video.mp4"
+            src="./visao/assets/img/video/background-video.mp4"
             type="video/mp4"
           />
         </video>
