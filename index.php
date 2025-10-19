@@ -1,5 +1,4 @@
 <?php
-
     $fun = $_GET["url"];
 
     switch ($fun) {
@@ -21,5 +20,4 @@
             include 'visao/404.php';
             break;
     }
-
 ?>

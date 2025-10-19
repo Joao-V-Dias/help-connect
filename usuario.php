@@ -1,5 +1,4 @@
 <?php
-	session_start();
     $fun = $_GET["fun"];
 
     switch ($fun) {
