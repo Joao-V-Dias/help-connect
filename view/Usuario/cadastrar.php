@@ -73,6 +73,30 @@
         </div>
         <div class="form-step">
           <div class="form-group">
+            <label for="foto">Foto de Perfil:</label>
+            <input
+              type="file"
+              id="foto"
+              name="foto"
+              accept="image/*"
+              
+            />
+          </div>
+          <div class="form-group">
+            <label>Pré-visualização:</label>
+            <div class="form-image-content">
+              <img id="fotoPreview" src="#" alt="Pré-visualização da Foto" class="form-image" />
+            </div>
+          </div>
+          <button type="button" class="form-button" onclick="prevStep()">
+            Voltar
+          </button>
+          <button type="button" class="form-button" onclick="nextStep()">
+            Próximo
+          </button>
+        </div>
+        <div class="form-step">
+          <div class="form-group">
             <label for="password">Senha:</label>
             <input
               type="password"

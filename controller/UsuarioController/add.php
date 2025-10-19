@@ -7,20 +7,20 @@ class CadastrarUsuario
     {
         if (isset($_POST["enviar"])) {
 
-            $c = new Usuario();
-            $c->setNome($_POST["nome"]);
-            $c->setEmail($_POST["email"]);
-            $c->setTelefone($_POST["telefone"]);
-            $c->setCidade($_POST["cidade"]);
-            $c->setSenha($_POST["senha"]);
-            $c->setFoto("https://wallpapers.com/images/high/alpaca-lowered-ears-izpzu2pf2lupt5ho.webp");
+            $usuario = new Usuario();
+            $usuario->setNome($_POST["nome"]);
+            $usuario->setEmail($_POST["email"]);
+            $usuario->setTelefone($_POST["telefone"]);
+            $usuario->setCidade($_POST["cidade"]);
+            $usuario->setSenha($_POST["senha"]);
+            $usuario->setFoto('assets/img/usuarios/default.jpg');
 
             $dao = new UsuarioDAO();
-            $id = $dao->create($c);
+            $id = $dao->create($usuario);
 
             $_SESSION['usuario_id'] = $id;
-            $_SESSION['usuario_nome'] = $c->getNome();
-            $_SESSION['usuario_foto'] = $c->getFoto();
+            $_SESSION['usuario_nome'] = $usuario->getNome();
+            $_SESSION['usuario_foto'] = $usuario->getFoto();
 
             header('Location: /help-connect/');
             exit;

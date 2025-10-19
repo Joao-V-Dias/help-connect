@@ -123,3 +123,19 @@ body {
 .form-step.active {
   display: block;
 }
+
+.form-image-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.form-image {
+  display: none;
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

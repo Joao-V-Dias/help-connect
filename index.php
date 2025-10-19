@@ -26,7 +26,7 @@
       </nav>
       <?php
         if (isset($_SESSION['usuario_id'])) {
-            echo '<a href=""><img src="' . $_SESSION['usuario_foto'] . '" alt="foto do usuario" class="user-img"/></a>';
+            echo '<a href=""><img src="./view/' . $_SESSION['usuario_foto'] . '" alt="foto do usuario" class="user-img"/></a>';
         } else {
             echo '<div class="login-btn"> <a href="./view/Usuario/login.php">Fazer login</a> </div>';
         }
