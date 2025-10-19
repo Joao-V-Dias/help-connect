@@ -1,9 +1,10 @@
 <?php
+    session_start();
     $fun = $_GET["fun"];
 
     switch ($fun) {
         case 'cadastrar':
-            include_once("controle/CadastrarUsuario_class.php");
+            include_once("controller/UsuarioController/add.php");
 			$pag = new CadastrarUsuario();
             break;
 
