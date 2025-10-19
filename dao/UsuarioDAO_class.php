@@ -35,6 +35,35 @@ class UsuarioDAO
 		}
 	}
 
+	public function login($email, $senha)
+	{
+		try {
+			$stmt = $this->con->prepare(
+				"SELECT * FROM usuario WHERE email = :email AND senha = :senha"
+			);
+			$stmt->bindValue(":email", $email);
+			$stmt->bindValue(":senha", $senha);
+			$stmt->execute();
+
+			$dado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			if ($dado) {
+				$usuario = new Usuario();
+				$usuario->setId($dado["id"]);
+				$usuario->setNome($dado["nome"]);
+				$usuario->setEmail($dado["email"]);
+				$usuario->setTelefone($dado["telefone"]);
+				$usuario->setCidade($dado["cidade"]);
+				$usuario->setFoto($dado["foto"]);
+				return $usuario;
+			} else {
+				return null;
+			}
+		} catch (PDOException $ex) {
+			die("ERRO FATAL NO DAO: " . $ex->getMessage());
+		}
+	}
+
 	//alterar
 	// public function alterar($cont){
 	// 	try{

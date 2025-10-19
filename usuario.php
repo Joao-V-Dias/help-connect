@@ -8,6 +8,10 @@
 			$pag = new CadastrarUsuario();
             break;
 
+        case 'login':
+            include_once("controller/UsuarioController/login.php");
+			$pag = new LoginUsuario();
+            break;
         // case 'buscar':
         //     include_once("controle/BuscarUsuario_class.php");
         //     $pag = new BuscarUsuario();
