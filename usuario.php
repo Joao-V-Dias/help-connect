@@ -7,9 +7,9 @@
 			$pag = new CadastrarUsuario();
             break;
 
-        case 'login':
-            include 'controle/LoginUsuario_class.php';
-            break;
+        // case 'buscar':
+        //     include_once("controle/BuscarUsuario_class.php");
+        //     $pag = new BuscarUsuario();
 
         default:
             http_response_code(404);

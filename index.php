@@ -14,7 +14,10 @@
         case 'home':
             include 'visao/home.php';
             break;
-
+        
+        case 'usuario':
+            include 'visao/buscarUsuario.php';
+            break;
         default:
             http_response_code(404);
             include 'visao/404.php';

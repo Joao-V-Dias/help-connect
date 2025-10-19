@@ -1,8 +1,6 @@
 <?php
 	include_once("modelo/UsuarioDAO_class.php");	
 	class CadastrarUsuario{
-		//CONTROLE
-	
 		public function __construct(){
 			
 			if(isset($_POST["enviar"])){
@@ -21,10 +19,6 @@
 				header('Location: /help-connect/?url=');
 				exit;
 				
-			} else{
-			
-				// include_once("visao/formCadastroContato.php");	
-			
 			}
 		}
 	}

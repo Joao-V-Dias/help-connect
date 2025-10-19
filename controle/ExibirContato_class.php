@@ -6,8 +6,8 @@
 	
 		public function __construct(){
 			
-			$dao = new ContatoDAO();
-			$cont = $dao->exibir($_GET["id"]);
+			$dao = new UsuarioDAO();
+			$cont = $dao->buscar($_GET["id"]);
 			include_once("visao/exibeContato.php");	
 			
 		}

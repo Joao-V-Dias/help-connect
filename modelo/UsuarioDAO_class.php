@@ -28,34 +28,6 @@
 				die("ERRO FATAL NO DAO: " . $ex->getMessage());
 			}
 		}
-
-		public function login($cont) {
-			try {
-				$stmt = $this->con->prepare(
-					"SELECT * FROM usuario WHERE email = :email AND senha = :senha"
-				);
-				$stmt->bindValue(":email", $cont->getEmail());
-				$stmt->bindValue(":senha", $cont->getSenha());
-				$stmt->execute();
-
-				if ($stmt->rowCount() > 0) {
-					$dado = $stmt->fetch(PDO::FETCH_ASSOC);
-					$usuario = new Usuario();
-					$usuario->setId($dado["id"]);
-					$usuario->setNome($dado["nome"]);
-					$usuario->setEmail($dado["email"]);
-					$usuario->setTelefone($dado["telefone"]);
-					$usuario->setCidade($dado["cidade"]);
-					$usuario->setSenha($dado["senha"]);
-					$usuario->setFoto($dado["foto"]);
-					return $usuario;
-				} else {
-					return null; // Login failed
-				}
-			} catch (PDOException $ex) {
-				die("ERRO FATAL NO DAO: " . $ex->getMessage());
-			}
-		}
 		
 		//alterar
 		// public function alterar($cont){
@@ -99,29 +71,31 @@
 		// 	}
 		// }
 		
-		// public function exibir($id){			
-		// 	try{				
-		// 		$lista = $this->con->query("SELECT * FROM contato WHERE id = " . $id);
+		public function buscar($id){			
+			try{				  
+				$stmt = $this->con->prepare(
+				"SELECT * FROM usuario WHERE id = :id");
+				$stmt->bindValue(":id", $id);
 				
-		// 		/*$this->con->close();
-		// 		$this->con = null;*/
+				$dado = $stmt->fetch(PDO::FETCH_ASSOC);
+				if($dado){
+					$usuario = new Usuario();
+					$usuario->setId($dado["id"]);
+					$usuario->setNome($dado["nome"]);
+					$usuario->setEmail($dado["email"]);
+					$usuario->setTelefone($dado["telefone"]);
+					$usuario->setCidade($dado["cidade"]);
+					$usuario->setFoto($dado["foto"]);
 				
-		// 		$dado = $lista->fetchAll(PDO::FETCH_ASSOC);
-				
-		// 		$c = new Contato();
-		// 		$c->setId($dado[0]["id"]);
-		// 		$c->setNome($dado[0]["nome"]);
-		// 		$c->setTelefone($dado[0]["telefone"]);
-		// 		$c->setEmail($dado[0]["email"]);
-		// 		$c->setFoto($dado[0]["foto"]);
-				
-		// 		return $c;	
-		// 	}
-		// 	catch(PDOException $ex){
-		// 		echo "Erro: " . $ex->getMessage();
-		// 	}
+					return $usuario;
+				}
+				include_once './visao/404.php';
+			}
+			catch(PDOException $ex){
+				echo "Erro: " . $ex->getMessage();
+			}
 			
-		// }
+		}
 	}
 
 
