@@ -31,7 +31,7 @@ class UsuarioDAO
 			// retorna o ID do usuário inserido
 			return $this->con->lastInsertId();
 		} catch (PDOException $ex) {
-			die("ERRO FATAL NO DAO: " . $ex->getMessage());
+			echo "Erro no DAO";
 		}
 	}
 

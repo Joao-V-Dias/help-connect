@@ -4,7 +4,7 @@
 		public $dbType = "mysql";
 		public $host = "localhost";
 		public $user = "root";
-		public $senha = "";
+		public $senha = "vertrigo";
 		public $db = "helpconnect";
 		public $persistente = false;
 		//Se for persistente a conexão se mantém até que o usuário
