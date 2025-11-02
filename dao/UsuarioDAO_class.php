@@ -39,15 +39,14 @@ class UsuarioDAO
 	{
 		try {
 			$stmt = $this->con->prepare(
-				"SELECT * FROM usuario WHERE email = :email AND senha = :senha"
+				"SELECT * FROM usuario WHERE email = :email"
 			);
 			$stmt->bindValue(":email", $email);
-			$stmt->bindValue(":senha", $senha);
 			$stmt->execute();
 
 			$dado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-			if ($dado) {
+			if ($dado && password_verify($senha, $dado["senha"])) {
 				$usuario = new Usuario();
 				$usuario->setId($dado["id"]);
 				$usuario->setNome($dado["nome"]);
@@ -60,7 +59,7 @@ class UsuarioDAO
 				return null;
 			}
 		} catch (PDOException $ex) {
-			die("ERRO FATAL NO DAO: " . $ex->getMessage());
+			echo "Falha ao fazer login";
 		}
 	}
 
@@ -114,19 +113,22 @@ class UsuarioDAO
 			);
 			$stmt->bindValue(":id", $id);
 
+			$stmt->execute();
+
 			$dado = $stmt->fetch(PDO::FETCH_ASSOC);
 			if ($dado) {
-				$usuario = new Usuario();
-				$usuario->setId($dado["id"]);
-				$usuario->setNome($dado["nome"]);
-				$usuario->setEmail($dado["email"]);
-				$usuario->setTelefone($dado["telefone"]);
-				$usuario->setCidade($dado["cidade"]);
-				$usuario->setFoto($dado["foto"]);
+				$perfil = new Usuario();
+				$perfil->setId($dado["id"]);
+				$perfil->setNome($dado["nome"]);
+				$perfil->setEmail($dado["email"]);
+				$perfil->setTelefone($dado["telefone"]);
+				$perfil->setCidade($dado["cidade"]);
+				$perfil->setFoto($dado["foto"]);
 
-				return $usuario;
+				return $perfil;
 			}
-			include_once './visao/404.php';
+			// Exibe a view 404 caso não encontre o usuário (caminho relativo ao diretório do DAO)
+			include_once __DIR__ . '/../view/404.php';
 		} catch (PDOException $ex) {
 			echo "Erro: " . $ex->getMessage();
 		}

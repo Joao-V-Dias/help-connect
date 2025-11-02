@@ -1,6 +1,6 @@
 <?php
 session_start();
-$fun = $_GET["fun"];
+$fun = isset($_GET["fun"]) ? $_GET["fun"] : '';
 
 switch ($fun) {
     case 'cadastrar':
@@ -14,11 +14,11 @@ switch ($fun) {
         break;
 
     case 'buscar':
-        include_once("controle/UsuarioController/buscar.php");
+        include_once("controller/UsuarioController/buscar.php");
         $pag = new BuscarUsuario();
-
+        break;
     default:
         http_response_code(404);
-        include 'visao/404.php';
+        include 'view/404.php';
         break;
 }

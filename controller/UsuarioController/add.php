@@ -24,20 +24,20 @@ class CadastrarUsuario
                 $foto = "assets/img/usuarios/default.jpg";
             }
 
+            $senha_hash = password_hash($_POST["senha"], PASSWORD_DEFAULT);
+
             $usuario = new Usuario();
             $usuario->setNome($_POST["nome"]);
             $usuario->setEmail($_POST["email"]);
             $usuario->setTelefone($_POST["telefone"]);
             $usuario->setCidade($_POST["cidade"]);
-            $usuario->setSenha($_POST["senha"]);
+            $usuario->setSenha($senha_hash);
             $usuario->setFoto($foto);
 
             $dao = new UsuarioDAO();
-            $id = $dao->create($usuario);
+            $usuario = $dao->create($usuario);
 
-            $_SESSION['usuario_id'] = $id;
-            $_SESSION['usuario_nome'] = $usuario->getNome();
-            $_SESSION['usuario_foto'] = $usuario->getFoto();
+            $_SESSION['usuario'] = $usuario;
 
             header('Location: /help-connect/');
             exit;

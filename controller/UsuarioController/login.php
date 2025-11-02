@@ -13,9 +13,7 @@ class LoginUsuario
             $usuario = $dao->login($email, $senha);
 
             if ($usuario) {
-                $_SESSION['usuario_id'] = $usuario->getId();
-                $_SESSION['usuario_nome'] = $usuario->getNome();
-                $_SESSION['usuario_foto'] = $usuario->getFoto();
+                $_SESSION['usuario'] = $usuario;
                 header('Location: /help-connect/');
                 exit;
             } else {

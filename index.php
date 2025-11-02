@@ -1,5 +1,7 @@
 <?php
+  include_once "./model/Usuario_class.php";
   session_start();
+  $usuario = $_SESSION["usuario"] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -17,21 +19,9 @@
   </head>
 
   <body>
-    <header>
-      <a href="#"
-        ><img src="./view/assets/img/icon/logo.svg" alt="logo do site" class="logo"
-      /></a>
-      <nav class="menu">
-        <a href="">Necessidades</a><a href="">Doações</a><a href="">Sobre</a>
-      </nav>
-      <?php
-        if (isset($_SESSION['usuario_id'])) {
-            echo '<a href=""><img src="./view/' . $_SESSION['usuario_foto'] . '" alt="foto do usuario" class="user-img"/></a>';
-        } else {
-            echo '<div class="login-btn"> <a href="./view/Usuario/login.php">Fazer login</a> </div>';
-        }
+    <?php
+      include_once "./view/assets/Header_Footer/Header.php";
     ?>
-    </header>
     <main>
       <section class="hero-section">
         <video autoplay muted loop playsinline id="bg-video">
@@ -204,12 +194,8 @@
       </section>
       <!-- <section class="comments"></section> -->
     </main>
-    <footer>
-      <div class=""></div>
-      <a href="" class="logo-footer"
-        ><img src="./assets/img/icon/logo.svg" alt="" class="logo" />
-        <p>HelpConnect</p>
-      </a>
-    </footer>
+    <?php
+      include_once "./view/assets/Header_Footer/Footer.php";
+    ?>
   </body>
 </html>
