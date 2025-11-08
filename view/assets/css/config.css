@@ -4,10 +4,10 @@
   /* color */
   --primary-color: #002147;
   --secondary-color: #ffffff;
-  --tertiary-color: #cc0202;
+  --tertiary-color: #fb9f04;
   --quaternary-color: #182746;
   /* fonts */
-  --font-size-xl: 96px;
+  --font-size-xl: 64px;
   --font-size-lg: 32px;
   --font-size-md: 20px;
   --font-size-sm: 18px;
@@ -18,4 +18,9 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--secondary-color);
+  overflow-x: hidden;
 }

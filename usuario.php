@@ -1,4 +1,8 @@
 <?php
+$phpPath = __DIR__ . '/model/Usuario_class.php';
+if (file_exists($phpPath)) {
+    require_once $phpPath;
+}
 session_start();
 $fun = isset($_GET["fun"]) ? $_GET["fun"] : '';
 

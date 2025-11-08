@@ -9,7 +9,7 @@ $usuario = $_SESSION["usuario"] ?? null;
 ?>
 
 <header>
-  <a href="#"><img src="./view/assets/img/icon/logo.svg" alt="logo do site" class="logo" /></a>
+  <a href="index.php"><img src="./view/assets/img/icon/logo.svg" alt="logo do site" class="logo" /></a>
   <nav class="menu">
     <a href="">Necessidades</a><a href="">Doações</a><a href="">Sobre</a>
   </nav>

@@ -1,201 +1,54 @@
 <?php
-  include_once "./model/Usuario_class.php";
-  session_start();
-  $usuario = $_SESSION["usuario"] ?? null;
+include_once "./model/Usuario_class.php";
+session_start();
+$usuario = $_SESSION["usuario"] ?? null;
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./view/assets/css/style.css" />
-    <link
-      rel="shortcut icon"
-      href="./assets/img/icon/logo.svg"
-      type="image/x-icon"
-    />
-    <title>HelpConnect</title>
-  </head>
 
-  <body>
-    <?php
-      include_once "./view/assets/Header_Footer/Header.php";
-    ?>
-    <main>
-      <section class="hero-section">
-        <video autoplay muted loop playsinline id="bg-video">
-          <source
-            src="./view/assets/img/video/background-video.mp4"
-            type="video/mp4"
-          />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./view/assets/css/home.css" />
+  <link
+    rel="shortcut icon"
+    href="./assets/img/icon/logo.svg"
+    type="image/x-icon" />
+  <title>HelpConnect</title>
+</head>
+
+<body>
+  <!-- <?php
+        //include_once "./view/assets/Header_Footer/Header.php";
+        ?> -->
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>HelpConnect</h1>
+        <p>
+          Conectando quem <span>precisa</span> com quem
+          <span>pode</span> ajudar.
+        </p>
+        <a href="">Quero ajudar</a>
+        <a href="">Quero ser ajudado</a>
+      </div>
+      <div class="hero-img">
+        <video autoplay muted loop id="video-1">
+          <source src="./view/assets/img/video/teste1.mp4" type="video/mp4">
         </video>
-        <div class="headline">
-          <h1>HelpConnect</h1>
-          <p>
-            Conectando quem <span>precisa</span> com quem
-            <span>pode</span> ajudar.
-          </p>
-          <div class="btns">
-            <a href="" class="btn">Quero ajudar</a>
-            <a href="" class="btn">Quero ser ajudado</a>
-          </div>
-        </div>
-      </section>
-      <section class="necessity-section">
-        <h2>Últimas Necessidades</h2>
-        <div class="group-card">
-          <a href="" class="card">
-            <img
-              src="./assets/img/provisorio/foto2.jpg"
-              alt="imagem de necessidade"
-              class="img-card"
-            />
-            <div class="content-card">
-              <h3 class="title-card">
-                Família em situação de vulnerabilidade precisa de alimentos não
-                perecíveis.
-              </h3>
-              <img
-                src="./assets/img/icon/right-arrow.svg"
-                alt=""
-                class="icon-arrow"
-              />
-            </div>
-          </a>
-          <a href="" class="card">
-            <img
-              src="./assets/img/provisorio/foto1.jpg"
-              alt="imagem de necessidade"
-              class="img-card"
-            />
-            <div class="content-card">
-              <h3 class="title-card">
-                Campanha do agasalho: precisamos de roupas de frio em bom
-                estado.
-              </h3>
-              <img
-                src="./assets/img/icon/right-arrow.svg"
-                alt=""
-                class="icon-arrow"
-              />
-            </div>
-          </a>
-          <a href="" class="card">
-            <img
-              src="./assets/img/provisorio/foto3.jpg"
-              alt="imagem de necessidade"
-              class="img-card"
-            />
-            <div class="content-card">
-              <h3 class="title-card">
-                Crianças necessitam de cadernos, mochilas e lápis para o início
-                das aulas.
-              </h3>
-              <img
-                src="./assets/img/icon/right-arrow.svg"
-                alt=""
-                class="icon-arrow"
-              />
-            </div>
-          </a>
-        </div>
-      </section>
-      <section class="donation-section">
-        <h2>Últimas Doações</h2>
-        <div class="group-card">
-          <a href="" class="card">
-            <img
-              src="./assets/img/provisorio/foto4.jpg"
-              alt="imagem de doação"
-              class="img-card"
-            />
-            <div class="content-card">
-              <h3 class="title-card">
-                Grupo de voluntários doou mais de 50 cestas básicas esta semana.
-              </h3>
-              <img
-                src="./assets/img/icon/right-arrow.svg"
-                alt=""
-                class="icon-arrow"
-              />
-            </div>
-          </a>
-          <a href="" class="card">
-            <img
-              src="./assets/img/provisorio/foto5.jpg"
-              alt="imagem de doação"
-              class="img-card"
-            />
-            <div class="content-card">
-              <h3 class="title-card">
-                Brinquedos doados para crianças em abrigo infantil.
-              </h3>
-              <img
-                src="./assets/img/icon/right-arrow.svg"
-                alt=""
-                class="icon-arrow"
-              />
-            </div>
-          </a>
-          <a href="" class="card">
-            <img
-              src="./assets/img/provisorio/foto6.jpg"
-              alt="imagem de doação"
-              class="img-card"
-            />
-            <div class="content-card">
-              <h3 class="title-card">
-                Mais de 100 marmitas foram distribuídas para moradores em
-                situação de rua.
-              </h3>
-              <img
-                src="./assets/img/icon/right-arrow.svg"
-                alt=""
-                class="icon-arrow"
-              />
-            </div>
-          </a>
-        </div>
-      </section>
-      <section class="how-work">
-        <h2>Como funciona</h2>
-        <div class="content-work">
-          <div class="card-work">
-            <div class="circle"></div>
-            <h3>Crie sua conta gratuitamente</h3>
-            <p>
-              Cadastre-se rapidinho como pessoa ou ONG. É super simples,
-              gratuito e em poucos cliques você já faz parte da nossa
-              comunidade.
-            </p>
-          </div>
+        <video autoplay muted loop id="video-2">
+          <source src="./view/assets/img/video/teste2.mp4" type="video/mp4">
+        </video>
+        <video autoplay muted loop id="video-3">
+          <source src="./view/assets/img/video/teste3.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+  </main>
+  <!-- <?php
+        // include_once "./view/assets/Header_Footer/Footer.php";
+        ?> -->
+</body>
 
-          <div class="card-work">
-            <div class="circle"></div>
-            <h3>Compartilhe pedidos ou doações</h3>
-            <p>
-              Conte o que você precisa ou o que deseja doar. Pode ser algo
-              pequeno ou grande — aqui sempre tem alguém disposto a ajudar ou
-              receber de coração aberto.
-            </p>
-          </div>
-
-          <div class="card-work">
-            <div class="circle"></div>
-            <h3>Construa conexões com a comunidade</h3>
-            <p>
-              Depois de publicar, outras pessoas vão ver sua mensagem e podem
-              falar diretamente com você. É a chance de conhecer gente nova,
-              trocar experiências e espalhar solidariedade.
-            </p>
-          </div>
-        </div>
-      </section>
-      <!-- <section class="comments"></section> -->
-    </main>
-    <?php
-      include_once "./view/assets/Header_Footer/Footer.php";
-    ?>
-  </body>
 </html>
