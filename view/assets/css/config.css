@@ -1,12 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
-  /* color */
-  --primary-color: #002147;
-  --secondary-color: #ffffff;
+  --primary-color: #000;
+  --secondary-color: #fff;
   --tertiary-color: #fb9f04;
-  --quaternary-color: #182746;
-  /* fonts */
   --font-size-xl: 64px;
   --font-size-lg: 32px;
   --font-size-md: 20px;
@@ -23,4 +20,38 @@
 body {
   background-color: var(--secondary-color);
   overflow-x: hidden;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2% 10%;
+}
+
+.menu {
+  display: flex;
+  gap: 1.5rem;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 400;
+  transition: 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--tertiary-color);
+  opacity: 0.8;
+}
+
+.user-img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--tertiary-color);
+  box-shadow: 0px 0px 8px 0px var(--tertiary-color);
 }

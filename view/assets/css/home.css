@@ -3,7 +3,7 @@
 .hero {
   width: 100%;
   height: 60vh;
-  padding: 5% 10%;
+  padding: 0% 10%;
   background-image: url("../img/background.svg");
   background-repeat: no-repeat;
   background-position: 70%;
@@ -45,28 +45,64 @@
 }
 
 #video-1 {
-  width: 16vw;
+  width: 12rem;
+  height: 12rem;
 }
 
 #video-2 {
-  width: 8vw;
+  width: 8rem;
+  height: 8rem;
 }
 
 #video-3 {
-  width: 6vw;
-}
-
-.hero-img {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  width: 6rem;
+  height: 6rem;
+  transform: translateY(-100px);
 }
 
 .hero-img > video {
-  /* height: 12vw; */
+  width: 50%;
+  height: 100%;
   object-fit: cover;
   border: 3px solid var(--tertiary-color);
   border-radius: 12px;
   box-shadow: 12px 3px 49px -18px var(--tertiary-color);
+}
+
+.donation {
+  width: 100%;
+  padding: 2% 10%;
+}
+
+.title-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-content > h2 {
+  font-size: var(--font-size-lg);
+}
+
+.title-content > a {
+  padding: 0.6rem 1.6rem;
+  background-color: var(--tertiary-color);
+  border-radius: 20px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  transition: 0.2s ease-in-out;
+}
+
+.title-content > a:hover {
+  opacity: 0.8;
+  transform: translateY(-2px);
+}
+
+.donation-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

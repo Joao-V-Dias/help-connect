@@ -44,7 +44,6 @@ a:hover {
 
 .hero-section {
   background-image: url("../img/background.svg");
-  background-color: blue;
 }
 
 h1 {
@@ -56,6 +55,8 @@ h1 {
 
 h2 {
   font-size: var(--font-size-lg);
+  text-align: center;
+  min-width: 100px;
 }
 
 .headline {
@@ -192,6 +193,10 @@ span {
 .comments {
   width: 100%;
   background: var(--primary-color);
+}
+
+.title-usuario {
+  width: 100%;
 }
 
 footer {

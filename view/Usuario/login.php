@@ -18,9 +18,9 @@ session_start();
       <h1>HelpConnect</h1>
       <h2>Faça Login</h2>
       <?php
-        if (isset($_SESSION['erro_login'])) {
-          echo '<p id="error-message">'.$_SESSION['erro_login'].'</p>';
-        }
+      if (isset($_SESSION['erro_login'])) {
+        echo '<p id="error-message">' . $_SESSION['erro_login'] . '</p>';
+      }
       ?>
     </header>
     <form class="form" action="../../usuario.php?fun=login" method="POST">

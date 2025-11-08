@@ -19,9 +19,9 @@ $usuario = $_SESSION["usuario"] ?? null;
 </head>
 
 <body>
-  <!-- <?php
-        //include_once "./view/assets/Header_Footer/Header.php";
-        ?> -->
+  <?php
+  include_once "./view/assets/Header_Footer/Header.php";
+  ?>
   <main>
     <section class="hero">
       <div class="hero-content">
@@ -33,16 +33,35 @@ $usuario = $_SESSION["usuario"] ?? null;
         <a href="">Quero ajudar</a>
         <a href="">Quero ser ajudado</a>
       </div>
-      <div class="hero-img">
-        <video autoplay muted loop id="video-1">
-          <source src="./view/assets/img/video/teste1.mp4" type="video/mp4">
-        </video>
-        <video autoplay muted loop id="video-2">
-          <source src="./view/assets/img/video/teste2.mp4" type="video/mp4">
-        </video>
-        <video autoplay muted loop id="video-3">
-          <source src="./view/assets/img/video/teste3.mp4" type="video/mp4">
-        </video>
+      <video autoplay muted loop id="video-1" class="hero-img">
+        <source src="./view/assets/img/video/teste1.mp4" type="video/mp4">
+      </video>
+    </section>
+    <section class="donation">
+      <div class="title-content">
+        <h2>Últimas doações</h2>
+        <a href="#">Ver mais</a>
+      </div>
+      <div class="donation-card">
+        <div class="card"><img src="" alt="">
+          <h3>titulo do card</h3>
+          <p>Quem postou</p>
+        </div>
+        <div class="card"><img src="" alt="">
+          <h3>titulo do card</h3>
+          <p>Quem postou</p>
+        </div>
+      </div>
+      <div class="card"><img src="" alt="">
+        <h3>titulo do card</h3>
+        <p>Quem postou</p>
+      </div>
+      </div>
+      <div class="card"><img src="" alt="">
+        <h3>titulo do card</h3>
+        <p>Quem postou</p>
+      </div>
+      </div>
       </div>
     </section>
   </main>
