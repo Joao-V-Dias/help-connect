@@ -133,4 +133,34 @@ class UsuarioDAO
 			echo "Erro: " . $ex->getMessage();
 		}
 	}
+
+	public function atualizar($usuario, $atualizarSenha = false)
+	{
+		try {
+			if ($atualizarSenha) {
+				$stmt = $this->con->prepare(
+					"UPDATE usuario SET nome = :nome, email = :email, telefone = :telefone, cidade = :cidade, foto = :foto, senha = :senha WHERE id = :id"
+				);
+				$stmt->bindValue(":senha", $usuario->getSenha());
+			} else {
+				$stmt = $this->con->prepare(
+					"UPDATE usuario SET nome = :nome, email = :email, telefone = :telefone, cidade = :cidade, foto = :foto WHERE id = :id"
+				);
+			}
+
+			$stmt->bindValue(":nome", $usuario->getNome());
+			$stmt->bindValue(":email", $usuario->getEmail());
+			$stmt->bindValue(":telefone", $usuario->getTelefone());
+			$stmt->bindValue(":cidade", $usuario->getCidade());
+			$stmt->bindValue(":foto", $usuario->getFoto());
+			$stmt->bindValue(":id", $usuario->getId());
+
+			$stmt->execute();
+
+			return true;
+		} catch (PDOException $ex) {
+			echo "Erro ao atualizar: " . $ex->getMessage();
+			return false;
+		}
+	}
 }

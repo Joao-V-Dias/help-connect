@@ -6,16 +6,16 @@ body {
 }
 
 header {
-  background-color: var(--primary-color);
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 10%;
+  padding: 2rem 10%;
   position: fixed;
   top: 0%;
   left: 0%;
   z-index: 99;
+  transition: background-color 200ms ease;
 }
 
 .menu {
@@ -24,7 +24,7 @@ header {
 }
 
 a {
-  color: var(--secondary-color);
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: 400;
   transition: 0.1s;

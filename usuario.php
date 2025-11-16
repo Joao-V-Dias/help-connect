@@ -21,6 +21,12 @@ switch ($fun) {
         include_once("controller/UsuarioController/buscar.php");
         $pag = new BuscarUsuario();
         break;
+
+    case 'editar':
+        include_once("controller/UsuarioController/editar.php");
+        $pag = new EditarUsuario();
+        break;
+
     default:
         http_response_code(404);
         include 'view/404.php';
