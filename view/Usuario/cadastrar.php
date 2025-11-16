@@ -16,13 +16,13 @@
       <h1>HelpConnect</h1>
       <h2>Crie sua Conta</h2>
     </header>
-    <form id="cadastroForm" class="form" action="../../usuario.php?fun=cadastrar" method="POST" enctype="multipart/form-data">
+    <form id="cadastroForm" class="form" action="../../usuario.php?fun=cadastrar" method="POST" enctype="multipart/form-data" novalidate>
       <div class="progress-bar-container">
         <div class="progress-bar" id="progressBar"></div>
       </div>
       <div class="form-step active">
         <div class="form-group">
-          <label for="nome">Nome Completo:</label>
+          <label for="nome">Nome Completo</label>
           <input
             type="text"
             id="nome"
@@ -31,7 +31,7 @@
             placeholder="Seu nome" />
         </div>
         <div class="form-group">
-          <label for="cidade">Cidade:</label>
+          <label for="cidade">Cidade</label>
           <input
             type="text"
             id="cidade"
@@ -45,7 +45,7 @@
       </div>
       <div class="form-step">
         <div class="form-group">
-          <label for="email">E-mail:</label>
+          <label for="email">E-mail</label>
           <input
             type="email"
             id="email"
@@ -54,7 +54,7 @@
             placeholder="seu.email@exemplo.com" />
         </div>
         <div class="form-group">
-          <label for="telefone">Telefone:</label>
+          <label for="telefone">Telefone</label>
           <input
             type="tel"
             id="telefone"
@@ -71,7 +71,7 @@
       </div>
       <div class="form-step">
         <div class="form-group">
-          <label for="foto">Foto de Perfil:</label>
+          <label for="foto">Foto de Perfil</label>
           <input
             type="file"
             id="foto"
@@ -79,7 +79,7 @@
             accept="image/*" />
         </div>
         <div class="form-group">
-          <label>Pré-visualização:</label>
+          <label>Pré-visualização</label>
           <div class="form-image-content">
             <img id="fotoPreview" src="#" alt="Pré-visualização da Foto" class="form-image" />
           </div>
@@ -93,7 +93,7 @@
       </div>
       <div class="form-step">
         <div class="form-group">
-          <label for="password">Senha:</label>
+          <label for="password">Senha</label>
           <input
             type="password"
             id="password"
@@ -102,7 +102,7 @@
             placeholder="Mínimo de 8 caracteres" />
         </div>
         <div class="form-group">
-          <label for="confirmPassword">Confirme a Senha:</label>
+          <label for="confirmPassword">Confirme a Senha</label>
           <input
             type="password"
             id="confirmPassword"
@@ -113,14 +113,16 @@
         <button type="button" class="form-button" onclick="prevStep()">
           Voltar
         </button>
-        <button type="submit" class="form-button" name="enviar">Finalizar Cadastro</button>
+        <button id="enviar" type="submit" class="form-button" name="enviar">Finalizar Cadastro</button>
       </div>
     </form>
     <div class="form-links">
       Já tem uma conta? <a href="./login.php">Faça Login</a>
     </div>
   </div>
-  <script src="../assets/js/cadastrar.js"></script>
+  <script src="../assets/js/jquery.js"></script>
+  <script src="../assets/js/cadastrarDOM.js"></script>
+  <script src="../assets/js/verificarForm.js"></script>
 </body>
 
 </html>

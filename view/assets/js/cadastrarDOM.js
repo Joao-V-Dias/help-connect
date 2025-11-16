@@ -1,10 +1,7 @@
 const fotoInput = document.getElementById("foto");
 const steps = document.querySelectorAll(".form-step");
 const progressBar = document.getElementById("progressBar");
-const passwordInput = document.getElementById("password");
 const fotoPreview = document.getElementById("fotoPreview");
-const confirmPasswordInput = document.getElementById("confirmPassword");
-const submitButton = document.querySelector("button[type='submit']");
 let currentStep = 0;
 
 function updateStep() {
@@ -28,20 +25,6 @@ function prevStep() {
   }
 }
 
-function validatePasswords() {
-  if (passwordInput.value !== confirmPasswordInput.value) {
-    confirmPasswordInput.style.borderColor = "red";
-    submitButton.disabled = true;
-  } else {
-    confirmPasswordInput.style.borderColor = "";
-    submitButton.disabled = false;
-  }
-}
-
-function teste() {
-  console.log("teste");
-}
-
 function previewFoto(event) {
   const file = event.target.files[0];
   if (file) {
@@ -57,6 +40,4 @@ function previewFoto(event) {
   }
 }
 
-confirmPasswordInput.addEventListener("input", validatePasswords);
-passwordInput.addEventListener("input", validatePasswords);
 fotoInput.addEventListener("change", previewFoto);
