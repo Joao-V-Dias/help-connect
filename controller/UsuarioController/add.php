@@ -1,46 +1,81 @@
 <?php
 require_once "dao/UsuarioDAO_class.php";
+require_once "model/Usuario_class.php";
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 class CadastrarUsuario
 {
     function __construct()
     {
         if (isset($_POST["enviar"])) {
+            $nome = trim($_POST['nome'] ?? '');
+            $email = trim($_POST['email'] ?? '');
+            $telefone = trim($_POST['telefone'] ?? '');
+            $cidade = trim($_POST['cidade'] ?? '');
+            $senha = trim($_POST['senha'] ?? '');
 
-            $arquivo = $_FILES["foto"]["tmp_name"];
-            $nome = $_FILES["foto"]["name"];
-
-            $extensao = pathinfo($nome, PATHINFO_EXTENSION);
-            $extensao = strtolower($extensao);
-
-            if(in_array($extensao, ['jpg', 'jpeg', 'gif', 'png'])){
-                $novoNome = uniqid(time()) . "." . $extensao;
-                $foto = "assets/img/usuarios/" . $novoNome;
-
-                if(move_uploaded_file($arquivo, __DIR__ . "/../../view/" . $foto)){
-                    $status = "Upload feito com sucesso";
+            $foto = null;
+            if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+                $foto = $this->processarUpload($_FILES['foto']);
+                if (!$foto) {
+                    $_SESSION['erro'] = 'Erro ao fazer upload da imagem';
+                    header('Location: /help-connect/view/Usuario/cadastrar.php');
+                    exit;
                 }
-            }else{
-                $foto = "assets/img/usuarios/default.jpg";
             }
 
-            $senha_hash = password_hash($_POST["senha"], PASSWORD_DEFAULT);
+            $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
             $usuario = new Usuario();
-            $usuario->setNome($_POST["nome"]);
-            $usuario->setEmail($_POST["email"]);
-            $usuario->setTelefone($_POST["telefone"]);
-            $usuario->setCidade($_POST["cidade"]);
+            $usuario->setNome($nome);
+            $usuario->setEmail($email);
+            $usuario->setTelefone($telefone);
+            $usuario->setCidade($cidade);
             $usuario->setSenha($senha_hash);
             $usuario->setFoto($foto);
 
             $dao = new UsuarioDAO();
-            $usuario = $dao->create($usuario);
+            $idNovoUsuario = $dao->create($usuario);
 
+            if (!$idNovoUsuario) {
+                $_SESSION['erro'] = 'Erro ao criar usuário. Tente novamente.';
+                header('Location: /help-connect/view/Usuario/cadastrar.php');
+                exit;
+            }
+
+            $usuario = $dao->buscar($idNovoUsuario);
             $_SESSION['usuario'] = $usuario;
 
             header('Location: /help-connect/');
             exit;
         }
+    }
+
+    private function processarUpload($file)
+    {
+        $tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        if (!in_array($file['type'], $tiposPermitidos)) {
+            return false;
+        }
+
+        if ($file['size'] > 5 * 1024 * 1024) {
+            return false;
+        }
+
+        $nomeArquivo = time() . uniqid() . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+        $diretorio = __DIR__ . '/../../view/assets/img/usuarios/';
+
+        if (!is_dir($diretorio)) {
+            mkdir($diretorio, 0755, true);
+        }
+
+        if (move_uploaded_file($file['tmp_name'], $diretorio . $nomeArquivo)) {
+            return 'assets/img/usuarios/' . $nomeArquivo;
+        }
+
+        return false;
     }
 }

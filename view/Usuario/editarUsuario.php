@@ -37,7 +37,6 @@ $foto = htmlspecialchars($usuario->getFoto());
 
             <div class="photo-section">
                 <?php
-                // Monta o path correto da foto
                 $fotoDb = $usuario->getFoto();
                 if ($fotoDb && strpos($fotoDb, 'assets/img/usuarios/') === 0) {
                     $fotoPath = '/help-connect/view/' . $fotoDb;
@@ -57,7 +56,7 @@ $foto = htmlspecialchars($usuario->getFoto());
                 <input type="text" id="nome" name="nome" value="<?php echo $nome; ?>" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display: none;">
                 <label for="email">E-mail</label>
                 <input type="email" id="email" name="email" value="<?php echo $email; ?>" required>
             </div>
@@ -85,7 +84,6 @@ $foto = htmlspecialchars($usuario->getFoto());
     </main>
 
     <script>
-        // Preview da imagem ao selecionar arquivo
         document.getElementById('foto').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
