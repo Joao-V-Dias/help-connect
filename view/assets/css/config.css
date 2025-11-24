@@ -4,10 +4,21 @@
   --primary-color: #000;
   --secondary-color: #fff;
   --tertiary-color: #fb9f04;
+  --bg-dark: #1a1a1a;
+  --bg-light: #f9f9f9;
+  --text-dark: #636363;
+  --text-light: #a3a3a3;
+  --border-color: #f3f0f0;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --border-radius: 8px;
+  --transition: 0.3s ease;
   --font-size-xl: 64px;
   --font-size-lg: 32px;
   --font-size-md: 20px;
   --font-size-sm: 18px;
+  --font-size-xs: 14px;
 }
 
 * {
@@ -28,6 +39,14 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 1% 10%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .menu {
@@ -54,4 +73,50 @@ a:hover {
   border-radius: 50%;
   border: 3px solid var(--tertiary-color);
   box-shadow: 0px 0px 8px 0px var(--tertiary-color);
+}
+
+/* Botões */
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+.btn.primary:hover {
+  background-color: #ff9800;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(251, 159, 4, 0.3);
+}
+
+.btn.secondary {
+  background-color: transparent;
+  color: var(--tertiary-color);
+  border: 2px solid var(--tertiary-color);
+}
+
+.btn.secondary:hover {
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+.btn.ghost {
+  background-color: transparent;
+  color: var(--tertiary-color);
+  border: 2px solid var(--tertiary-color);
+}
+
+.btn.ghost:hover {
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
 }

@@ -1,0 +1,52 @@
+/* Estilos específicos para as páginas de Posts (cadastrar, listar, ver, editar) */
+
+.form-container {
+  background: var(--secondary-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select,
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: var(--font-size-sm);
+}
+
+.donation-cards-grid .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.donation-cards-grid .card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-image img { max-height: 260px; object-fit: cover; }
+
+/* garantir que cards-link (<a class="card">) se comportem como bloco */
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* responsivo para forms */
+@media (max-width: 768px) {
+  .form-container { padding: 1rem; }
+}

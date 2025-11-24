@@ -21,7 +21,7 @@ if ($usuario && $usuario->getFoto()) {
 <header>
   <a href="/help-connect/index.php"><img src="/help-connect/view/assets/img/icon/logo.svg" alt="logo do site" class="logo" /></a>
   <nav class="menu">
-    <a href="">Necessidades</a><a href="">Doações</a><a href="">Sobre</a>
+    <a href="">Necessidades</a><a href="">Doações</a><a href="/help-connect/view/sobre.php">Sobre</a>
   </nav>
   <?php
   if ($usuario) {
