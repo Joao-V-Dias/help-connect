@@ -1,6 +1,6 @@
 <?php
-require_once 'Post_class.php';
 require_once 'ConnectionFactory_class.php';
+require_once 'Post_class.php';
 
 class PostDAO
 {
@@ -12,20 +12,24 @@ class PostDAO
         $this->conn = $factory->getConnection();
     }
 
-    public function create(Post $post)
+    public function create($post)
     {
-        $sql = "INSERT INTO posts (titulo, descricao, categoria, tipo, cidade, usuario_id, imagem, created_at)
+        try {
+            $sql = "INSERT INTO posts (titulo, descricao, categoria, tipo, cidade, usuario_id, imagem, created_at)
                 VALUES (:titulo, :descricao, :categoria, :tipo, :cidade, :usuario_id, :imagem, NOW())";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(':titulo', $post->getTitulo());
-        $stmt->bindValue(':descricao', $post->getDescricao());
-        $stmt->bindValue(':categoria', $post->getCategoria());
-        $stmt->bindValue(':tipo', $post->getTipo());
-        $stmt->bindValue(':cidade', $post->getCidade());
-        $stmt->bindValue(':usuario_id', $post->getUsuarioId());
-        $stmt->bindValue(':imagem', $post->getImagem());
-        $stmt->execute();
-        return $this->conn->lastInsertId();
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(':titulo', $post->getTitulo());
+            $stmt->bindValue(':descricao', $post->getDescricao());
+            $stmt->bindValue(':categoria', $post->getCategoria());
+            $stmt->bindValue(':tipo', $post->getTipo());
+            $stmt->bindValue(':cidade', $post->getCidade());
+            $stmt->bindValue(':usuario_id', $post->getUsuarioId());
+            $stmt->bindValue(':imagem', $post->getImagem());
+            $stmt->execute();
+            return $this->conn->lastInsertId();
+        } catch (PDOException $ex) {
+            echo "Erro ao salvar no banco de dados";
+        }
     }
 
     public function update(Post $post)

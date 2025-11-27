@@ -4,41 +4,38 @@ require_once 'Usuario_class.php';
 
 class UsuarioDAO
 {
-	public $con = null;
+	public $conn = null;
 
 	public function __construct()
 	{
-		$conF = new ConnectionFactory();
-		$this->con = $conF->getConnection();
+		$factory = new ConnectionFactory();
+		$this->conn = $factory->getConnection();
 	}
 
-	public function create($cont)
+	public function create($usuario)
 	{
 		try {
-			$stmt = $this->con->prepare(
+			$stmt = $this->conn->prepare(
 				"INSERT INTO usuario (nome, email, telefone, cidade, senha, foto)
 				VALUES (:nome, :email, :telefone, :cidade, :senha, :foto)"
 			);
-			$stmt->bindValue(":nome", $cont->getNome());
-			$stmt->bindValue(":email", $cont->getEmail());
-			$stmt->bindValue(":telefone", $cont->getTelefone());
-			$stmt->bindValue(":cidade", $cont->getCidade());
-			$stmt->bindValue(":senha", $cont->getSenha());
-			$stmt->bindValue(":foto", $cont->getFoto());
-
+			$stmt->bindValue(":nome", $usuario->getNome());
+			$stmt->bindValue(":email", $usuario->getEmail());
+			$stmt->bindValue(":telefone", $usuario->getTelefone());
+			$stmt->bindValue(":cidade", $usuario->getCidade());
+			$stmt->bindValue(":senha", $usuario->getSenha());
+			$stmt->bindValue(":foto", $usuario->getFoto());
 			$stmt->execute();
-
-			// retorna o ID do usuário inserido
-			return $this->con->lastInsertId();
+			return $this->conn->lastInsertId();
 		} catch (PDOException $ex) {
-			echo "Erro no DAO";
+			echo "Erro ao salvar usuario: " . $ex->getMessage();
 		}
 	}
 
 	public function login($email, $senha)
 	{
 		try {
-			$stmt = $this->con->prepare(
+			$stmt = $this->conn->prepare(
 				"SELECT * FROM usuario WHERE email = :email"
 			);
 			$stmt->bindValue(":email", $email);
@@ -59,63 +56,20 @@ class UsuarioDAO
 				return null;
 			}
 		} catch (PDOException $ex) {
-			echo "Falha ao fazer login";
+			echo "Erro ao fazer login: " . $ex->getMessage();
 		}
 	}
-
-	//alterar
-	// public function alterar($cont){
-	// 	try{
-	// 		$stmt = $this->con->prepare(
-	// 		"UPDATE contato SET nome=:nome, 
-	// 		email = :email, telefone=:telefone, foto=:foto WHERE
-	// 		id=:id");
-
-	// 		//ligamos as âncoras aos valores de Contato
-	// 		$stmt->bindValue(":nome", $cont->getNome());
-	// 		$stmt->bindValue(":email", $cont->getEmail());
-	// 		$stmt->bindValue(":telefone", $cont->getTelefone());
-	// 		$stmt->bindValue(":foto", $cont->getFoto());
-	// 		$stmt->bindValue(":id", $cont->getId());
-
-	// 		$this->con->beginTransaction();
-	// 	    $stmt->execute(); //execução do SQL	
-	// 		$this->con->commit(); 
-	// 		/*$this->con->close();
-	// 		$this->con = null;*/	
-	// 	}
-	// 	catch(PDOException $ex){
-	// 		echo "Erro: " . $ex->getMessage();
-	// 	}
-	// }
-	//excluir
-	// public function excluir($cont){
-	// 	try{
-	// 		$num = $this->con->exec("DELETE FROM contato WHERE id = " . $cont->getId());
-	// 		//numero de linhas afetadas pelo comando
-
-	// 		if($num >= 1){
-	// 			return 1;
-	// 		} else {
-	// 			return 0;
-	// 		}
-	// 	}
-	// 	catch(PDOException $ex){
-	// 		echo "Erro: " . $ex->getMessage();
-	// 	}
-	// }
 
 	public function buscar($id)
 	{
 		try {
-			$stmt = $this->con->prepare(
+			$stmt = $this->conn->prepare(
 				"SELECT * FROM usuario WHERE id = :id"
 			);
 			$stmt->bindValue(":id", $id);
-
 			$stmt->execute();
-
 			$dado = $stmt->fetch(PDO::FETCH_ASSOC);
+
 			if ($dado) {
 				$perfil = new Usuario();
 				$perfil->setId($dado["id"]);
@@ -124,11 +78,8 @@ class UsuarioDAO
 				$perfil->setTelefone($dado["telefone"]);
 				$perfil->setCidade($dado["cidade"]);
 				$perfil->setFoto($dado["foto"]);
-
 				return $perfil;
 			}
-			// Exibe a view 404 caso não encontre o usuário (caminho relativo ao diretório do DAO)
-			include_once __DIR__ . '/../view/404.php';
 		} catch (PDOException $ex) {
 			echo "Erro: " . $ex->getMessage();
 		}
@@ -138,12 +89,12 @@ class UsuarioDAO
 	{
 		try {
 			if ($atualizarSenha) {
-				$stmt = $this->con->prepare(
+				$stmt = $this->conn->prepare(
 					"UPDATE usuario SET nome = :nome, email = :email, telefone = :telefone, cidade = :cidade, foto = :foto, senha = :senha WHERE id = :id"
 				);
 				$stmt->bindValue(":senha", $usuario->getSenha());
 			} else {
-				$stmt = $this->con->prepare(
+				$stmt = $this->conn->prepare(
 					"UPDATE usuario SET nome = :nome, email = :email, telefone = :telefone, cidade = :cidade, foto = :foto WHERE id = :id"
 				);
 			}
@@ -154,7 +105,6 @@ class UsuarioDAO
 			$stmt->bindValue(":cidade", $usuario->getCidade());
 			$stmt->bindValue(":foto", $usuario->getFoto());
 			$stmt->bindValue(":id", $usuario->getId());
-
 			$stmt->execute();
 
 			return true;

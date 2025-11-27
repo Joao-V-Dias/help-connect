@@ -9,7 +9,8 @@
 	<style>
 		/* Pequenas customizações para a página de perfil */
 		.profile-container {
-			padding: 8rem 10%; /* deixa espaço para header fixo do style.css */
+			padding: 8rem 10%;
+			/* deixa espaço para header fixo do style.css */
 			display: flex;
 			justify-content: center;
 			align-items: flex-start;
@@ -21,7 +22,7 @@
 			width: 40rem;
 			background: var(--secondary-color);
 			border-radius: 8px;
-			box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+			box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 			padding: 2rem;
 			display: flex;
 			gap: 1.5rem;
@@ -73,15 +74,21 @@
 		}
 
 		@media (max-width: 600px) {
-			.profile-card { width: 95%; }
-			.profile-img { width: 8rem; height: 8rem; }
+			.profile-card {
+				width: 95%;
+			}
+
+			.profile-img {
+				width: 8rem;
+				height: 8rem;
+			}
 		}
 	</style>
 </head>
 
 <body>
 	<?php
-	    include_once __DIR__ . '/../assets/Header_Footer/Header.php';
+	include_once __DIR__ . '/../assets/Header_Footer/Header.php';
 	?>
 
 	<main class="profile-container">
@@ -98,18 +105,17 @@
 				<div><strong>Cidade:</strong> <?php echo $perfil->getCidade(); ?></div>
 			</div>
 
-            
+
 
 			<!-- <div class="profile-actions">
 				<a class="btn" href="../../index.php">Voltar</a>
 			</div> -->
 		</div>
-        
+
 	</main>
-    <?php   
-        include_once __DIR__ . '/../assets/Header_Footer/Footer.php';
-    ?>
+	<?php
+	include_once __DIR__ . '/../assets/Header_Footer/Footer.php';
+	?>
 </body>
 
 </html>
-
