@@ -39,18 +39,58 @@ if (!$post) { header('Location: listar.php'); exit; }
       </div>
     </div>
 
-    <div class="card" style="max-width:900px;margin:0 auto;">
-      <div class="card-image">
-        <img src="<?php echo htmlspecialchars($post->getImagem() ?: 'view/assets/img/provisorio/placeholder-card.svg'); ?>" alt="<?php echo htmlspecialchars($post->getTitulo()); ?>">
-      </div>
-      <div class="card-content">
-        <h3><?php echo htmlspecialchars($post->getTitulo()); ?></h3>
-        <p class="card-location">📍 <?php echo htmlspecialchars($post->getCidade()); ?></p>
-        <p class="card-description"><?php echo nl2br(htmlspecialchars($post->getDescricao())); ?></p>
-        <div class="card-meta">
-          <span class="meta-tag"><?php echo htmlspecialchars($post->getCategoria()); ?></span>
-          <span class="meta-tag"><?php echo htmlspecialchars($post->getTipo()); ?></span>
+    <div class="post-page" style="padding-bottom:4rem;">
+      <div class="post-hero">
+        <div class="post-hero-image">
+          <?php
+            $img = $post->getImagem() ?: 'view/assets/img/provisorio/placeholder-card.svg';
+            if (substr($img,0,1) !== '/' && strpos($img, 'http') !== 0) {
+              $img = '/help-connect/' . ltrim($img, '/');
+            }
+          ?>
+          <img src="<?php echo htmlspecialchars($img); ?>" alt="<?php echo htmlspecialchars($post->getTitulo()); ?>">
         </div>
+        <div class="post-hero-info">
+          <h1><?php echo htmlspecialchars($post->getTitulo()); ?></h1>
+          <p class="post-meta">
+            <strong><?php echo htmlspecialchars($post->getCategoria()); ?></strong>
+            &nbsp;•&nbsp; <?php echo htmlspecialchars($post->getCidade()); ?>
+            &nbsp;•&nbsp; <?php echo htmlspecialchars(ucfirst($post->getTipo())); ?>
+            &nbsp;•&nbsp; <?php echo htmlspecialchars($post->getCreatedAt()); ?>
+          </p>
+          <p class="post-intro">Conecte-se com quem está precisando. Aqui você encontra detalhes e como ajudar.</p>
+        </div>
+      </div>
+
+      <div class="post-body-wrapper">
+        <article class="post-body">
+          <?php echo nl2br(htmlspecialchars($post->getDescricao())); ?>
+        </article>
+
+        <aside class="post-side">
+          <div class="author-box">
+            <div class="author-avatar"><img src="/help-connect/view/assets/img/icon/avatar-placeholder.svg" alt="Autor" /></div>
+            <div class="author-info">
+              <div class="author-name">Publicado por</div>
+              <div class="author-meta">Usuário ID: <?php echo htmlspecialchars($post->getUsuarioId()); ?></div>
+            </div>
+          </div>
+
+          <div class="post-actions">
+            <?php if ($usuario && $usuario->getId() == $post->getUsuarioId()): ?>
+              <a href="editarPost.php?id=<?php echo $post->getId(); ?>" class="btn secondary">Editar</a>
+              <a href="../../controller/PostController/delete.php?id=<?php echo $post->getId(); ?>" class="btn ghost" onclick="return confirm('Excluir este post?');">Excluir</a>
+            <?php else: ?>
+              <a href="../Usuario/cadastrar.php" class="btn primary">Oferecer Ajuda</a>
+              <a href="../Usuario/login.php" class="btn secondary">Entrar para Conectar</a>
+            <?php endif; ?>
+          </div>
+
+          <div class="post-stats">
+            <div class="stat"><strong>Visualizações</strong><div>--</div></div>
+            <div class="stat"><strong>Candidatos</strong><div>--</div></div>
+          </div>
+        </aside>
       </div>
     </div>
   </section>

@@ -1,5 +1,5 @@
 <?php
-require_once "dao/UsuarioDAO_class.php";
+require_once "model/UsuarioDAO_class.php";
 
 class LoginUsuario
 {

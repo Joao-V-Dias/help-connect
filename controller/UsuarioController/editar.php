@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../dao/UsuarioDAO_class.php';
+require_once __DIR__ . '/../../model/UsuarioDAO_class.php';
 require_once __DIR__ . '/../../model/Usuario_class.php';
 
 class EditarUsuario

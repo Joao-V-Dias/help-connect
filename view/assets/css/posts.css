@@ -50,3 +50,95 @@
 @media (max-width: 768px) {
   .form-container { padding: 1rem; }
 }
+
+/* Post view (ver.php) styles */
+.post-page {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.post-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.post-hero-image img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  border: 4px solid rgba(251,159,4,0.06);
+}
+
+.post-hero-info h1 {
+  font-size: 2.2rem;
+  color: var(--text-dark);
+  margin-bottom: 0.4rem;
+}
+
+.post-meta {
+  color: var(--text-light);
+  margin-bottom: 0.8rem;
+}
+
+.post-intro {
+  color: var(--text-dark);
+  font-size: var(--font-size-md);
+  margin-top: 0.5rem;
+}
+
+.post-body-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.post-body {
+  background: var(--secondary-color);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  color: var(--text-dark);
+  line-height: 1.7;
+  font-size: var(--font-size-md);
+}
+
+.post-side {
+  background: var(--bg-light);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.author-box { display:flex; gap:0.8rem; align-items:center; }
+.author-avatar img { width:56px; height:56px; object-fit:cover; border-radius:50%; }
+.author-name { font-weight:700; color:var(--text-dark); }
+.author-meta { color:var(--text-light); font-size:var(--font-size-xs); }
+
+.post-actions { display:flex; flex-direction:column; gap:0.7rem; margin-top:0.8rem; }
+.post-actions .btn { width:100%; text-align:center; }
+
+.post-stats { display:flex; gap:1rem; margin-top:1rem; }
+.post-stats .stat { flex:1; background:var(--secondary-color); padding:0.8rem; border-radius:8px; text-align:center; box-shadow:var(--shadow-sm); }
+
+@media (max-width: 900px) {
+  .post-hero { grid-template-columns: 1fr; }
+  .post-hero-image img { height: 240px; }
+  .post-body-wrapper { grid-template-columns: 1fr; }
+  .post-side { order: 2; }
+}
+
+@media (max-width: 480px) {
+  .post-hero-image img { height: 180px; }
+  .post-hero-info h1 { font-size: 1.5rem; }
+  .post-body { padding: 1rem; font-size: 0.95rem; }
+}

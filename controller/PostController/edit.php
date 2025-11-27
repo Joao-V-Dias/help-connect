@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../model/Post_class.php';
-require_once __DIR__ . '/../../dao/PostDAO_class.php';
+require_once __DIR__ . '/../../model/PostDAO_class.php';
 require_once __DIR__ . '/../../model/Usuario_class.php';
 
 if (session_status() === PHP_SESSION_NONE) session_start();
@@ -14,9 +14,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = intval($_POST['id'] ?? 0);
     $dao = new PostDAO();
     $post = $dao->findById($id);
-    if (!$post) { header('Location: ../../view/Posts/listar.php'); exit; }
+    if (!$post) {
+        header('Location: ../../view/Posts/listar.php');
+        exit;
+    }
     // Only allow owner to edit
-    if ($post->getUsuarioId() != $usuario->getId()) { header('Location: ../../view/Posts/listar.php'); exit; }
+    if ($post->getUsuarioId() != $usuario->getId()) {
+        header('Location: ../../view/Posts/listar.php');
+        exit;
+    }
 
     $titulo = trim($_POST['titulo'] ?? '');
     $descricao = trim($_POST['descricao'] ?? '');
@@ -33,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileName = time() . '_' . uniqid() . '.' . $ext;
         $target = $uploadDir . $fileName;
         if (move_uploaded_file($_FILES['imagem']['tmp_name'], $target)) {
-            $imagemPath = 'view/assets/img/necessidades/' . $fileName;
+            $imagemPath = '/help-connect/view/assets/img/necessidades/' . $fileName;
         }
     }
 

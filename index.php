@@ -1,5 +1,6 @@
 <?php
 require_once "./model/Usuario_class.php";
+require_once __DIR__ . '/model/PostDAO_class.php';
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
@@ -32,8 +33,10 @@ $usuario = $_SESSION["usuario"] ?? null;
           <span>pode</span> ajudar.
         </p>
         <div class="hero-buttons">
-          <a href="./view/Usuario/cadastrar.php" class="btn primary">Quero Ajudar</a>
-          <a href="./view/Usuario/cadastrar.php" class="btn secondary">Quero Ser Ajudado</a>
+          <!-- Quero Ajudar: mostra necessidades -> usuários que querem ajudar veem quem precisa -->
+          <a href="./view/Posts/listar.php?tipo=necessidade" class="btn primary">Quero Ajudar</a>
+          <!-- Quero Ser Ajudado: leva direto ao formulário para criar uma necessidade -->
+          <a href="./view/Posts/cadastrar.php?tipo=necessidade" class="btn secondary">Quero Ser Ajudado</a>
         </div>
       </div>
       <video autoplay muted loop id="video-1" class="hero-img">
@@ -75,66 +78,67 @@ $usuario = $_SESSION["usuario"] ?? null;
           <h2>Últimas Necessidades</h2>
           <p class="section-subtitle">Pessoas que estão buscando ajuda agora</p>
         </div>
-        <a href="#" class="btn secondary">Ver Mais</a>
+        <a href="./view/Posts/listar.php?tipo=necessidade" class="btn secondary">Ver Mais</a>
       </div>
       <div class="donation-cards-grid">
-        <a href="./view/necessidade/ver.php?id=1" class="card">
-          <div class="card-image">
-            <img src="./view/assets/img/provisorio/placeholder-card.svg" alt="Necessidade 1">
-            <span class="card-badge">Urgente</span>
-          </div>
-          <div class="card-content">
-            <h3>Alimentos para Família</h3>
-            <p class="card-location">📍 São Paulo, SP</p>
-            <p class="card-description">Família necessita de alimentos básicos para 2 semanas</p>
-            <div class="card-meta">
-              <span class="meta-tag">Alimentação</span>
-            </div>
-          </div>
-        </a>
+        <?php
+        // fetch latest 4 necessidades from the DB
+        $postDao = new PostDAO();
+        $rows = $postDao->findAllByTipo('necessidade');
+        $posts = array_slice($rows, 0, 4);
 
-        <a href="./view/necessidade/ver.php?id=2" class="card">
-          <div class="card-image">
-            <img src="./view/assets/img/provisorio/placeholder-card.svg" alt="Necessidade 2">
-          </div>
-          <div class="card-content">
-            <h3>Aulas de Matemática</h3>
-            <p class="card-location">📍 Rio de Janeiro, RJ</p>
-            <p class="card-description">Estudante precisa de reforço para passar no vestibular</p>
-            <div class="card-meta">
-              <span class="meta-tag">Educação</span>
+        if (count($posts) > 0):
+          foreach ($posts as $row):
+            $img = $row['imagem'] ?: 'view/assets/img/provisorio/placeholder-card.svg';
+            if (substr($img, 0, 1) !== '/' && strpos($img, 'http') !== 0) {
+              $img = '/help-connect/' . ltrim($img, '/');
+            }
+            $isRecent = false;
+            if (!empty($row['created_at'])) {
+              $isRecent = (strtotime($row['created_at']) >= time() - 7 * 24 * 3600);
+            }
+        ?>
+            <a href="./view/Posts/ver.php?id=<?php echo htmlspecialchars($row['id']); ?>" class="card">
+              <div class="card-image">
+                <img src="<?php echo htmlspecialchars($img); ?>" alt="<?php echo htmlspecialchars($row['titulo']); ?>">
+                <?php if ($isRecent): ?>
+                  <span class="card-badge">Novo</span>
+                <?php else: ?>
+                  <span class="card-badge"><?php echo htmlspecialchars(ucfirst($row['tipo'])); ?></span>
+                <?php endif; ?>
+              </div>
+              <div class="card-content">
+                <h3><?php echo htmlspecialchars($row['titulo']); ?></h3>
+                <p class="card-location">📍 <?php echo htmlspecialchars($row['cidade']); ?></p>
+                <p class="card-description"><?php echo nl2br(htmlspecialchars($row['descricao'])); ?></p>
+                <div class="card-meta">
+                  <span class="meta-tag"><?php echo htmlspecialchars($row['categoria']); ?></span>
+                </div>
+              </div>
+            </a>
+          <?php
+          endforeach;
+        else:
+          // fallback: show 4 placeholders if no posts
+          for ($i = 0; $i < 4; $i++):
+          ?>
+            <div class="card">
+              <div class="card-image">
+                <img src="./view/assets/img/provisorio/placeholder-card.svg" alt="placeholder">
+              </div>
+              <div class="card-content">
+                <h3>Sem publicações</h3>
+                <p class="card-location">—</p>
+                <p class="card-description">Nenhuma necessidade publicada ainda. Seja o primeiro a criar uma.</p>
+                <div class="card-meta">
+                  <span class="meta-tag">—</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </a>
-
-        <a href="./view/necessidade/ver.php?id=3" class="card">
-          <div class="card-image">
-            <img src="./view/assets/img/provisorio/placeholder-card.svg" alt="Necessidade 3">
-          </div>
-          <div class="card-content">
-            <h3>Reparo de Eletrodomésticos</h3>
-            <p class="card-location">📍 Belo Horizonte, MG</p>
-            <p class="card-description">Procuro alguém com experiência para consertar geladeira</p>
-            <div class="card-meta">
-              <span class="meta-tag">Serviços</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="./view/necessidade/ver.php?id=4" class="card">
-          <div class="card-image">
-            <img src="./view/assets/img/provisorio/placeholder-card.svg" alt="Necessidade 4">
-            <span class="card-badge">Novo</span>
-          </div>
-          <div class="card-content">
-            <h3>Transporte para Consulta Médica</h3>
-            <p class="card-location">📍 Curitiba, PR</p>
-            <p class="card-description">Idoso precisa de carona para consulta de acompanhamento</p>
-            <div class="card-meta">
-              <span class="meta-tag">Saúde</span>
-            </div>
-          </div>
-        </a>
+        <?php
+          endfor;
+        endif;
+        ?>
       </div>
     </section>
 

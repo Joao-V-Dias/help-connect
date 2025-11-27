@@ -1,16 +1,19 @@
 <?php
-require_once __DIR__ . '/../model/Post_class.php';
-require_once __DIR__ . '/../util/ConnectionFactory_class.php';
+require_once 'Post_class.php';
+require_once 'ConnectionFactory_class.php';
 
-class PostDAO {
+class PostDAO
+{
     private $conn;
 
-    public function __construct() {
+    public function __construct()
+    {
         $factory = new ConnectionFactory();
         $this->conn = $factory->getConnection();
     }
 
-    public function create(Post $post) {
+    public function create(Post $post)
+    {
         $sql = "INSERT INTO posts (titulo, descricao, categoria, tipo, cidade, usuario_id, imagem, created_at)
                 VALUES (:titulo, :descricao, :categoria, :tipo, :cidade, :usuario_id, :imagem, NOW())";
         $stmt = $this->conn->prepare($sql);
@@ -25,7 +28,8 @@ class PostDAO {
         return $this->conn->lastInsertId();
     }
 
-    public function update(Post $post) {
+    public function update(Post $post)
+    {
         $sql = "UPDATE posts SET titulo=:titulo, descricao=:descricao, categoria=:categoria, tipo=:tipo, cidade=:cidade, imagem=:imagem WHERE id=:id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':titulo', $post->getTitulo());
@@ -38,14 +42,16 @@ class PostDAO {
         return $stmt->execute();
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $sql = "DELETE FROM posts WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':id', $id);
         return $stmt->execute();
     }
 
-    public function findById($id) {
+    public function findById($id)
+    {
         $sql = "SELECT * FROM posts WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':id', $id);
@@ -65,7 +71,8 @@ class PostDAO {
         return $post;
     }
 
-    public function findAllByTipo($tipo) {
+    public function findAllByTipo($tipo)
+    {
         $sql = "SELECT * FROM posts WHERE tipo = :tipo ORDER BY created_at DESC";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':tipo', $tipo);
@@ -73,11 +80,10 @@ class PostDAO {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findAll() {
+    public function findAll()
+    {
         $sql = "SELECT * FROM posts ORDER BY created_at DESC";
         $stmt = $this->conn->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
-
-?>

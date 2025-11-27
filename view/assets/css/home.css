@@ -358,6 +358,11 @@ main {
 
 /* Responsivo */
 @media (max-width: 768px) {
+  .donation-cards-grid {
+    align-items: center;
+    justify-content: center;
+  }
+
   .hero {
     flex-direction: column;
     padding: 2rem 5%;

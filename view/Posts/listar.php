@@ -39,7 +39,14 @@ if ($tipo === 'necessidade' || $tipo === 'doacao') {
       <?php foreach ($rows as $row): ?>
         <a href="ver.php?id=<?php echo $row['id']; ?>" class="card">
           <div class="card-image">
-            <img src="<?php echo htmlspecialchars($row['imagem'] ?: 'view/assets/img/provisorio/placeholder-card.svg'); ?>" alt="<?php echo htmlspecialchars($row['titulo']); ?>">
+            <?php
+              $img = $row['imagem'] ?: 'view/assets/img/provisorio/placeholder-card.svg';
+              // ensure absolute path from site root
+              if (substr($img,0,1) !== '/' && strpos($img, 'http') !== 0) {
+                  $img = '/help-connect/' . ltrim($img, '/');
+              }
+            ?>
+            <img src="<?php echo htmlspecialchars($img); ?>" alt="<?php echo htmlspecialchars($row['titulo']); ?>">
             <?php if ($row['tipo'] === 'necessidade'): ?>
               <span class="card-badge">Necessidade</span>
             <?php else: ?>

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../model/Post_class.php';
-require_once __DIR__ . '/../../dao/PostDAO_class.php';
+require_once __DIR__ . '/../../model/PostDAO_class.php';
 require_once __DIR__ . '/../../model/Usuario_class.php';
 
 if (session_status() === PHP_SESSION_NONE) session_start();
@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileName = time() . '_' . uniqid() . '.' . $ext;
         $target = $uploadDir . $fileName;
         if (move_uploaded_file($_FILES['imagem']['tmp_name'], $target)) {
-            // store relative path for views
-            $imagemPath = 'view/assets/img/necessidades/' . $fileName;
+            // store absolute path from web root so views everywhere can load correctly
+            $imagemPath = '/help-connect/view/assets/img/necessidades/' . $fileName;
         }
     }
 

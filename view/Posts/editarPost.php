@@ -64,7 +64,8 @@ if (!$usuario || $post->getUsuarioId() != $usuario->getId()) { header('Location:
         <label>Imagem (opcional)</label>
         <input type="file" name="imagem" accept="image/*" />
         <?php if ($post->getImagem()): ?>
-          <div style="margin-top:8px;"><img src="<?php echo htmlspecialchars($post->getImagem()); ?>" style="max-width:140px;border-radius:6px;" /></div>
+          <?php $preview = $post->getImagem(); if (substr($preview,0,1)!=='/' && strpos($preview,'http')!==0) $preview = '/help-connect/' . ltrim($preview, '/'); ?>
+          <div style="margin-top:8px;"><img src="<?php echo htmlspecialchars($preview); ?>" style="max-width:140px;border-radius:6px;" /></div>
         <?php endif; ?>
       </div>
       <div class="form-group">

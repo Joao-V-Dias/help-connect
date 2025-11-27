@@ -45,13 +45,14 @@ if (!$usuario) { header('Location: ../../Usuario/login.php'); exit; }
         <label>Cidade</label>
         <input type="text" name="cidade" required />
       </div>
-      <div class="form-group">
-        <label>Tipo</label>
-        <select name="tipo">
-          <option value="necessidade">Necessidade</option>
-          <option value="doacao">Doação</option>
-        </select>
-      </div>
+        <div class="form-group">
+          <label>Tipo</label>
+          <?php $preTipo = strtolower(trim($_GET['tipo'] ?? 'necessidade')); ?>
+          <select name="tipo">
+            <option value="necessidade" <?php echo $preTipo === 'necessidade' ? 'selected' : ''; ?>>Necessidade</option>
+            <option value="doacao" <?php echo $preTipo === 'doacao' ? 'selected' : ''; ?>>Doação</option>
+          </select>
+        </div>
       <div class="form-group">
         <label>Imagem (opcional)</label>
         <input type="file" name="imagem" accept="image/*" />

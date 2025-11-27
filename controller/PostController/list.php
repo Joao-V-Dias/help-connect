@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../dao/PostDAO_class.php';
+require_once __DIR__ . '/../../model/PostDAO_class.php';
 
 $tipo = $_GET['tipo'] ?? null; // 'necessidade' or 'doacao' or null
 $dao = new PostDAO();
