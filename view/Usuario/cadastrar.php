@@ -12,11 +12,9 @@
 
 <body>
   <div class="form-container">
-    <header class="form-header">
+    <form id="cadastroForm" class="form" action="../../usuario.php?fun=cadastrar" method="POST" enctype="multipart/form-data" novalidate>
       <h1>HelpConnect</h1>
       <h2>Crie sua Conta</h2>
-    </header>
-    <form id="cadastroForm" class="form" action="../../usuario.php?fun=cadastrar" method="POST" enctype="multipart/form-data" novalidate>
       <div class="progress-bar-container">
         <div class="progress-bar" id="progressBar"></div>
       </div>

@@ -5,9 +5,8 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Perfil - HelpConnect</title>
-	<link rel="stylesheet" href="./view/assets/css/style.css">
+	<link rel="stylesheet" href="../assets/css/style.css">
 	<style>
-		/* Pequenas customizações para a página de perfil */
 		.profile-container {
 			padding: 8rem 10%;
 			/* deixa espaço para header fixo do style.css */
@@ -94,7 +93,6 @@
 	<main class="profile-container">
 		<div class="profile-card">
 			<img src="<?php echo "./view/" . $perfil->getFoto(); ?>" alt="Foto de <?php echo $perfil->getNome(); ?>" class="profile-img">
-
 			<div class="profile-header">
 				<h2><?php echo $perfil->getNome(); ?></h2>
 			</div>

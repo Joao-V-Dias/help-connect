@@ -27,8 +27,7 @@ if (!$usuario) {
     <section class="donation" style="padding-top:6rem;">
       <div class="section-header">
         <div>
-          <h2>Criar Novo Post</h2>
-          <p class="section-subtitle">Publique uma necessidade ou uma doação</p>
+          <h2>Criar Nova campanha</h2>
         </div>
         <a href="listar.php" class="btn secondary">Voltar</a>
       </div>
@@ -49,14 +48,6 @@ if (!$usuario) {
         <div class="form-group">
           <label>Cidade</label>
           <input type="text" name="cidade" required />
-        </div>
-        <div class="form-group">
-          <label>Tipo</label>
-          <?php $preTipo = strtolower(trim($_GET['tipo'] ?? 'necessidade')); ?>
-          <select name="tipo">
-            <option value="necessidade" <?php echo $preTipo === 'necessidade' ? 'selected' : ''; ?>>Necessidade</option>
-            <option value="doacao" <?php echo $preTipo === 'doacao' ? 'selected' : ''; ?>>Doação</option>
-          </select>
         </div>
         <div class="form-group">
           <label>Imagem (opcional)</label>

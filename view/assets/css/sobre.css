@@ -31,7 +31,7 @@
 
 .hero-image {
   width: 100%;
-  max-width: 400px;
+  max-width: 760px; /* aumentar hero image para desktop */
   height: auto;
   border-radius: var(--border-radius);
 }
@@ -371,9 +371,9 @@
 
 .hero-image {
   width: 100%;
-  max-width: 400px;
+  max-width: 760px; /* manter consistência e aumentar */
   height: auto;
-  border-radius: 12px;
+  border-radius: var(--border-radius);
 }
 
 /* Seções Gerais */
@@ -444,6 +444,18 @@
 .missao,
 .visao {
   background-color: #f9f9f9;
+}
+
+/* Visão: ajustar imagem para ficar maior e alinhada à esquerda */
+.sobre-section.visao .section-content.reverse {
+  flex-direction: row; /* sobrescreve row-reverse somente para seção visão */
+}
+
+.sobre-section.visao .section-image {
+  max-width: 520px; /* aumenta tamanho da imagem na seção visão */
+  margin-right: 2rem; /* espaço entre imagem e texto */
+  margin-left: 0;
+  align-self: flex-start;
 }
 
 .valores {

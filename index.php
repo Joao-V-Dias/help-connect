@@ -24,7 +24,6 @@ $usuario = $_SESSION["usuario"] ?? null;
   <?php include_once "./view/assets/Header_Footer/Header.php"; ?>
 
   <main>
-    <!-- Hero Section -->
     <section class="hero">
       <div class="hero-content">
         <h1>HelpConnect</h1>
@@ -33,10 +32,8 @@ $usuario = $_SESSION["usuario"] ?? null;
           <span>pode</span> ajudar.
         </p>
         <div class="hero-buttons">
-          <!-- Quero Ajudar: mostra necessidades -> usuários que querem ajudar veem quem precisa -->
           <a href="./view/Posts/listar.php?tipo=necessidade" class="btn primary">Quero Ajudar</a>
-          <!-- Quero Ser Ajudado: leva direto ao formulário para criar uma necessidade -->
-          <a href="./view/Posts/cadastrar.php?tipo=necessidade" class="btn secondary">Quero Ser Ajudado</a>
+          <a href="./view/Posts/cadastrar.php?tipo=necessidade" class="btn secondary">Quero criar uma campanha</a>
         </div>
       </div>
       <video autoplay muted loop id="video-1" class="hero-img">
@@ -44,7 +41,6 @@ $usuario = $_SESSION["usuario"] ?? null;
       </video>
     </section>
 
-    <!-- Como Funciona - Quick Version -->
     <section class="como-funciona-home">
       <h2>Como Funciona</h2>
       <div class="passos-grid">
@@ -56,7 +52,7 @@ $usuario = $_SESSION["usuario"] ?? null;
         <div class="passo-item">
           <div class="passo-icon">2️⃣</div>
           <h3>Complete o Perfil</h3>
-          <p>Conte sobre você e suas habilidades ou necessidades</p>
+          <p>Conte sobre você e suas necessidades</p>
         </div>
         <div class="passo-item">
           <div class="passo-icon">3️⃣</div>
@@ -71,7 +67,6 @@ $usuario = $_SESSION["usuario"] ?? null;
       </div>
     </section>
 
-    <!-- Últimas Doações/Necessidades -->
     <section class="donation">
       <div class="section-header">
         <div>
@@ -82,7 +77,6 @@ $usuario = $_SESSION["usuario"] ?? null;
       </div>
       <div class="donation-cards-grid">
         <?php
-        // fetch latest 4 necessidades from the DB
         $postDao = new PostDAO();
         $rows = $postDao->findAllByTipo('necessidade');
         $posts = array_slice($rows, 0, 4);
@@ -119,7 +113,6 @@ $usuario = $_SESSION["usuario"] ?? null;
           <?php
           endforeach;
         else:
-          // fallback: show 4 placeholders if no posts
           for ($i = 0; $i < 4; $i++):
           ?>
             <div class="card">
@@ -142,7 +135,6 @@ $usuario = $_SESSION["usuario"] ?? null;
       </div>
     </section>
 
-    <!-- Categorias de Ajuda -->
     <section class="categorias">
       <h2>Categorias de Ajuda</h2>
       <div class="categorias-grid">
@@ -179,7 +171,6 @@ $usuario = $_SESSION["usuario"] ?? null;
       </div>
     </section>
 
-    <!-- Depoimentos -->
     <section class="testimonials">
       <h2>O Que Dizem Sobre Nós</h2>
       <div class="testimonials-grid">
@@ -203,7 +194,6 @@ $usuario = $_SESSION["usuario"] ?? null;
       </div>
     </section>
 
-    <!-- CTA Final -->
     <section class="cta-final">
       <h2>Comece a Fazer a Diferença Hoje</h2>
       <p>Junte-se a nossa comunidade de pessoas solidárias</p>

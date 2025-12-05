@@ -29,6 +29,6 @@ switch ($fun) {
 
     default:
         http_response_code(404);
-        include 'view/404.php';
+        include 'view/erro.php';
         break;
 }

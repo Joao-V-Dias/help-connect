@@ -26,9 +26,9 @@ $usuario = $_SESSION['usuario'] ?? null;
         <section class="sobre-hero">
             <div class="hero-content">
                 <h1>Sobre HelpConnect</h1>
-                <p>Conectando pessoas que desejam ajudar com aquelas que precisam de suporte</p>
+                <p>Conectando quem precisa com quem pode ajudar.</p>
             </div>
-            <img src="./assets/img/provisorio/sobre-img.jpg" alt="Pessoas ajudando" class="hero-image">
+            <img src="./assets/img/provisorio/fachada.png" alt="Pessoas ajudando" class="hero-image">
         </section>
 
         <!-- Missão -->
@@ -46,19 +46,18 @@ $usuario = $_SESSION['usuario'] ?? null;
                         <li>✓ Empoderar pessoas através do compartilhamento</li>
                     </ul>
                 </div>
-                <img src="./assets/img/provisorio/placeholder-missao.svg" alt="Missão" class="section-image">
             </div>
         </section>
 
         <!-- Visão -->
         <section class="sobre-section visao">
             <div class="section-content reverse">
-                <img src="./assets/img/provisorio/placeholder-visao.svg" alt="Visão" class="section-image">
+                <img src="./assets/img/provisorio/visao.png" alt="Visão" class="section-image">
                 <div class="text-content">
                     <h2>Nossa Visão</h2>
                     <p>
                         Ser a plataforma de referência para conectar pessoas dispostas a ajudar com aquelas que enfrentam dificuldades.
-                        Queremos viver em um mundo onde a solidariedade transcende barreiras e todos têm acesso ao suporte que precisam.
+                        <br>Queremos viver em um mundo onde a solidariedade transcende barreiras e todos têm acesso ao suporte que precisam.
                     </p>
                     <ul>
                         <li>✓ Transformar vidas através da solidariedade</li>

@@ -31,10 +31,9 @@ if ($tipo === 'necessidade' || $tipo === 'doacao') {
     <section class="donation" style="padding-top:6rem;">
       <div class="section-header">
         <div>
-          <h2><?php echo $tipo ? ucfirst($tipo) : 'Posts'; ?></h2>
-          <p class="section-subtitle">Lista de <?php echo $tipo ? $tipo : 'posts'; ?></p>
+          <h2>Campanhas</h2>
         </div>
-        <a href="cadastrar.php" class="btn primary">Novo Post</a>
+        <a href="cadastrar.php" class="btn primary">Criar campanha</a>
       </div>
 
       <div class="donation-cards-grid">

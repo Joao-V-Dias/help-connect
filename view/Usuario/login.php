@@ -14,7 +14,7 @@ session_start();
 
 <body>
   <div class="form-container">
-    <header class="form-header">
+    <form class="form" action="../../usuario.php?fun=login" method="POST">
       <h1>HelpConnect</h1>
       <h2>Faça Login</h2>
       <?php
@@ -22,8 +22,6 @@ session_start();
         echo '<p id="error-message">' . $_SESSION['erro_login'] . '</p>';
       }
       ?>
-    </header>
-    <form class="form" action="../../usuario.php?fun=login" method="POST">
       <div class="form-group">
         <label for="email">E-mail:</label>
         <input
