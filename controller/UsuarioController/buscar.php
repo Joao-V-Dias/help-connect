@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../../model/UsuarioDAO_class.php';
-require_once __DIR__ . '/../../model/Usuario_class.php';
+require_once ROOT_PATH . '/model/UsuarioModel/UsuarioDAO_class.php';
+require_once ROOT_PATH . '/model/UsuarioModel/Usuario_class.php';
 
 class BuscarUsuario
 {
@@ -10,7 +10,7 @@ class BuscarUsuario
             $id = intval($_GET["id"]);
             if ($id <= 0) {
                 http_response_code(404);
-                require_once __DIR__ . '/../../view/404.php';
+                require_once ROOT_PATH . '/view/404.php';
                 return;
             }
 
@@ -19,11 +19,11 @@ class BuscarUsuario
 
             if (!$perfil) {
                 http_response_code(404);
-                require_once __DIR__ . '/../../view/404.php';
+                require_once ROOT_PATH . '/view/404.php';
                 return;
             }
 
-            require_once __DIR__ . '/../../view/Usuario/buscar.php';
+            require_once ROOT_PATH . '/view/UsuarioView/buscar.php';
         } else {
             // missing id -> redirect to home
             header('Location: /help-connect/');

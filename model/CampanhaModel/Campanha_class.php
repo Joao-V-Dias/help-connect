@@ -1,5 +1,5 @@
 <?php
-class Post
+class Campanha
 {
     private $id;
     private $titulo;

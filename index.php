@@ -1,6 +1,7 @@
 <?php
-require_once "./model/Usuario_class.php";
-require_once __DIR__ . '/model/PostDAO_class.php';
+define("ROOT_PATH", __DIR__);
+require_once ROOT_PATH . "/model/UsuarioModel/Usuario_class.php";
+require_once ROOT_PATH . '/model/CampanhaModel/CampanhaDAO_class.php';
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
@@ -21,7 +22,7 @@ $usuario = $_SESSION["usuario"] ?? null;
 </head>
 
 <body>
-  <?php include_once "./view/assets/Header_Footer/Header.php"; ?>
+  <?php include_once ROOT_PATH . "/view/assets/Static/Header.php"; ?>
 
   <main>
     <section class="hero">
@@ -77,7 +78,7 @@ $usuario = $_SESSION["usuario"] ?? null;
       </div>
       <div class="donation-cards-grid">
         <?php
-        $postDao = new PostDAO();
+        $postDao = new CampanhaDAO();
         $rows = $postDao->findAllByTipo('necessidade');
         $posts = array_slice($rows, 0, 4);
 
@@ -208,7 +209,7 @@ $usuario = $_SESSION["usuario"] ?? null;
     </section>
   </main>
 
-  <?php include_once "./view/assets/Header_Footer/Footer.php"; ?>
+  <?php include_once "./view/assets/Static/Footer.php"; ?>
 </body>
 
 </html>

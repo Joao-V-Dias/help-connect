@@ -1,5 +1,8 @@
 <?php
-$phpPath = __DIR__ . '/model/Usuario_class.php';
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', __DIR__);
+}
+$phpPath = ROOT_PATH . '/model/UsuarioModel/Usuario_class.php';
 if (file_exists($phpPath)) {
     require_once $phpPath;
 }

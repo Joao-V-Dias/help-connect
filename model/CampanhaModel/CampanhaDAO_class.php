@@ -1,8 +1,8 @@
 <?php
-require_once 'ConnectionFactory_class.php';
-require_once 'Post_class.php';
+require_once ROOT_PATH . '/model/ConnectionFactory_class.php';
+require_once 'Campanha_class.php';
 
-class PostDAO
+class CampanhaDAO
 {
     private $conn;
 
@@ -12,19 +12,19 @@ class PostDAO
         $this->conn = $factory->getConnection();
     }
 
-    public function create($post)
+    public function create($campanha)
     {
         try {
             $sql = "INSERT INTO posts (titulo, descricao, categoria, tipo, cidade, usuario_id, imagem, created_at)
                 VALUES (:titulo, :descricao, :categoria, :tipo, :cidade, :usuario_id, :imagem, NOW())";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindValue(':titulo', $post->getTitulo());
-            $stmt->bindValue(':descricao', $post->getDescricao());
-            $stmt->bindValue(':categoria', $post->getCategoria());
-            $stmt->bindValue(':tipo', $post->getTipo());
-            $stmt->bindValue(':cidade', $post->getCidade());
-            $stmt->bindValue(':usuario_id', $post->getUsuarioId());
-            $stmt->bindValue(':imagem', $post->getImagem());
+            $stmt->bindValue(':titulo', $campanha->getTitulo());
+            $stmt->bindValue(':descricao', $campanha->getDescricao());
+            $stmt->bindValue(':categoria', $campanha->getCategoria());
+            $stmt->bindValue(':tipo', $campanha->getTipo());
+            $stmt->bindValue(':cidade', $campanha->getCidade());
+            $stmt->bindValue(':usuario_id', $campanha->getUsuarioId());
+            $stmt->bindValue(':imagem', $campanha->getImagem());
             $stmt->execute();
             return $this->conn->lastInsertId();
         } catch (PDOException $ex) {
@@ -32,17 +32,17 @@ class PostDAO
         }
     }
 
-    public function update(Post $post)
+    public function update(Campanha $campanha)
     {
         $sql = "UPDATE posts SET titulo=:titulo, descricao=:descricao, categoria=:categoria, tipo=:tipo, cidade=:cidade, imagem=:imagem WHERE id=:id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(':titulo', $post->getTitulo());
-        $stmt->bindValue(':descricao', $post->getDescricao());
-        $stmt->bindValue(':categoria', $post->getCategoria());
-        $stmt->bindValue(':tipo', $post->getTipo());
-        $stmt->bindValue(':cidade', $post->getCidade());
-        $stmt->bindValue(':imagem', $post->getImagem());
-        $stmt->bindValue(':id', $post->getId());
+        $stmt->bindValue(':titulo', $campanha->getTitulo());
+        $stmt->bindValue(':descricao', $campanha->getDescricao());
+        $stmt->bindValue(':categoria', $campanha->getCategoria());
+        $stmt->bindValue(':tipo', $campanha->getTipo());
+        $stmt->bindValue(':cidade', $campanha->getCidade());
+        $stmt->bindValue(':imagem', $campanha->getImagem());
+        $stmt->bindValue(':id', $campanha->getId());
         return $stmt->execute();
     }
 
@@ -62,17 +62,17 @@ class PostDAO
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if (!$row) return null;
-        $post = new Post();
-        $post->setId($row['id']);
-        $post->setTitulo($row['titulo']);
-        $post->setDescricao($row['descricao']);
-        $post->setCategoria($row['categoria']);
-        $post->setTipo($row['tipo']);
-        $post->setCidade($row['cidade']);
-        $post->setUsuarioId($row['usuario_id']);
-        $post->setImagem($row['imagem']);
-        $post->setCreatedAt($row['created_at']);
-        return $post;
+        $campanha = new Campanha();
+        $campanha->setId($row['id']);
+        $campanha->setTitulo($row['titulo']);
+        $campanha->setDescricao($row['descricao']);
+        $campanha->setCategoria($row['categoria']);
+        $campanha->setTipo($row['tipo']);
+        $campanha->setCidade($row['cidade']);
+        $campanha->setUsuarioId($row['usuario_id']);
+        $campanha->setImagem($row['imagem']);
+        $campanha->setCreatedAt($row['created_at']);
+        return $campanha;
     }
 
     public function findAllByTipo($tipo)

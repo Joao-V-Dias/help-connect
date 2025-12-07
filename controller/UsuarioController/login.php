@@ -1,5 +1,5 @@
 <?php
-require_once "model/UsuarioDAO_class.php";
+require_once ROOT_PATH . "/model/UsuarioModel/UsuarioDAO_class.php";
 
 class LoginUsuario
 {
@@ -18,7 +18,7 @@ class LoginUsuario
                 exit;
             } else {
                 $_SESSION['erro_login'] = "Email ou senha inválidos";
-                header('Location: /help-connect/view/Usuario/login.php');
+                header('Location: /help-connect/view/UsuarioView/login.php');
                 exit;
             }
         }

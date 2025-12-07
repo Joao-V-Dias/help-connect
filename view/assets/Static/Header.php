@@ -1,39 +1,30 @@
 <?php
-require_once __DIR__ . '/../../../model/Usuario_class.php';
+require_once ROOT_PATH . '/model/UsuarioModel/Usuario_class.php';
 
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
 $usuario = $_SESSION["usuario"] ?? null;
-
-$imagePath = '/help-connect/view/assets/img/usuarios/default.jpg';
-if ($usuario && $usuario->getFoto()) {
-  $fotoDb = $usuario->getFoto();
-  if (strpos($fotoDb, 'assets/img/usuarios/') === 0) {
-    $imagePath = '/help-connect/view/' . $fotoDb;
-  } else {
-    $imagePath = '/help-connect/view/assets/img/usuarios/' . $fotoDb;
-  }
-}
 ?>
 
 <header>
   <a href="/help-connect/index.php"><img src="/help-connect/view/assets/img/icon/logo.svg" alt="logo do site" class="logo" /></a>
   <nav class="menu">
     <a href="/help-connect/view/Posts/listar.php?tipo=necessidade">Campanhas</a>
-    <a href="/help-connect/view/sobre.php">Sobre</a>
+    <a href="/help-connect/view/sobre.php">Quem somos</a>
+    <?php
+    if ($usuario) {
+      echo '<a href="/help-connect/view/Usuario/editarUsuario.php"><img src="' . ROOT_PATH . $usuario->getFoto() . '" alt="foto do usuario" class="user-img"/></a>';
+    } else {
+      echo '<div > <a id="login-btn" href="/help-connect/view/UsuarioView/login.php">Fazer login</a> </div>';
+    }
+    ?>
   </nav>
   <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
     <span class="hamburger-box"><span class="hamburger-inner"></span></span>
   </button>
-  <?php
-  if ($usuario) {
-    echo '<a href="/help-connect/view/Usuario/editarUsuario.php"><img src="' . $imagePath . '" alt="foto do usuario" class="user-img"/></a>';
-  } else {
-    echo '<div class="login-btn"> <a href="/help-connect/view/Usuario/login.php">Fazer login</a> </div>';
-  }
-  ?>
+
 </header>
 
 <div id="mobileMenu" class="menu-mobile" aria-hidden="true">
