@@ -1,6 +1,8 @@
 <?php
-// Carrega a classe antes da sessão para evitar incomplete object
-require_once __DIR__ . '/../../model/Usuario_class.php';
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', __DIR__ . '/../..');
+}
+require_once ROOT_PATH . '/model/Usuariomodel/Usuario_class.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
 
 $usuario = $_SESSION['usuario'] ?? null;
@@ -29,7 +31,7 @@ $foto = htmlspecialchars($usuario->getFoto());
 </head>
 
 <body>
-    <?php include_once __DIR__ . '/../assets/Header_Footer/Header.php'; ?>
+    <?php include_once ROOT_PATH . '/view/assets/Static/Header.php'; ?>
 
     <main class="edit-container">
         <form class="edit-card" action="../../usuario.php?fun=editar" method="POST" enctype="multipart/form-data">

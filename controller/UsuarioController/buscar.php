@@ -10,7 +10,7 @@ class BuscarUsuario
             $id = intval($_GET["id"]);
             if ($id <= 0) {
                 http_response_code(404);
-                require_once ROOT_PATH . '/view/404.php';
+                require_once ROOT_PATH . '/view/erro.php';
                 return;
             }
 
@@ -19,13 +19,12 @@ class BuscarUsuario
 
             if (!$perfil) {
                 http_response_code(404);
-                require_once ROOT_PATH . '/view/404.php';
+                require_once ROOT_PATH . '/view/erro.php';
                 return;
             }
 
             require_once ROOT_PATH . '/view/UsuarioView/buscar.php';
         } else {
-            // missing id -> redirect to home
             header('Location: /help-connect/');
             exit;
         }

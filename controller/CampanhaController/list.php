@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__ . '/../../model/PostDAO_class.php';
+require_once __DIR__ . '/../../model/CampanhaModel/CampanhaDAO_class.php';
 
 $tipo = $_GET['tipo'] ?? null; // 'necessidade' or 'doacao' or null
-$dao = new PostDAO();
+$dao = new CampanhaDAO();
 if ($tipo) {
     $posts = $dao->findAllByTipo($tipo);
 } else {

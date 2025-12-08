@@ -1,6 +1,6 @@
 <?php
-require_once "model/UsuarioDAO_class.php";
-require_once "model/Usuario_class.php";
+require_once "model/UsuarioModel/UsuarioDAO_class.php";
+require_once "model/UsuarioModel/Usuario_class.php";
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

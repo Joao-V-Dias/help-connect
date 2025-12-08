@@ -1,5 +1,5 @@
 <?php
-require_once 'ConnectionFactory_class.php';
+require_once __DIR__ . '/../ConnectionFactory_class.php';
 require_once 'Usuario_class.php';
 
 class UsuarioDAO
