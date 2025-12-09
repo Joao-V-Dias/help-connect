@@ -75,15 +75,6 @@ class CampanhaDAO
         return $campanha;
     }
 
-    public function findAllByTipo($tipo)
-    {
-        $sql = "SELECT * FROM posts WHERE tipo = :tipo ORDER BY created_at DESC";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(':tipo', $tipo);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
     public function findAll()
     {
         $sql = "SELECT * FROM posts ORDER BY created_at DESC";

@@ -1,7 +1,10 @@
 <?php
-require_once __DIR__ . '/../../model/Post_class.php';
-require_once __DIR__ . '/../../model/PostDAO_class.php';
-require_once __DIR__ . '/../../model/Usuario_class.php';
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', __DIR__ . '/../..');
+}
+require_once ROOT_PATH . '/model/CampanhaModel/Campanha_class.php';
+require_once ROOT_PATH . '/model/CampanhaModel/CampanhaDAO_class.php';
+require_once ROOT_PATH . '/model/UsuarioModel/Usuario_class.php';
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 $usuario = $_SESSION['usuario'] ?? null;
@@ -17,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tipo = trim($_POST['tipo'] ?? 'necessidade');
     $cidade = trim($_POST['cidade'] ?? '');
 
-    // upload image (optional)
     $imagemPath = null;
     if (!empty($_FILES['imagem']['name'])) {
         $uploadDir = __DIR__ . '/../../view/assets/img/necessidades/';
@@ -26,26 +28,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileName = time() . '_' . uniqid() . '.' . $ext;
         $target = $uploadDir . $fileName;
         if (move_uploaded_file($_FILES['imagem']['tmp_name'], $target)) {
-            // store absolute path from web root so views everywhere can load correctly
             $imagemPath = '/help-connect/view/assets/img/necessidades/' . $fileName;
         }
     }
 
-    $post = new Post();
-    $post->setTitulo($titulo);
-    $post->setDescricao($descricao);
-    $post->setCategoria($categoria);
-    $post->setTipo($tipo);
-    $post->setCidade($cidade);
-    $post->setUsuarioId($usuario->getId());
-    $post->setImagem($imagemPath);
+    $campanha = new Campanha();
+    $campanha->setTitulo($titulo);
+    $campanha->setDescricao($descricao);
+    $campanha->setCategoria($categoria);
+    $campanha->setTipo($tipo);
+    $campanha->setCidade($cidade);
+    $campanha->setUsuarioId($usuario->getId());
+    $campanha->setImagem($imagemPath);
 
-    $dao = new PostDAO();
-    $id = $dao->create($post);
+    $dao = new CampanhaDAO();
+    $id = $dao->create($campanha);
 
-    header('Location: ../../view/Posts/listar.php?tipo=' . urlencode($tipo));
+    header('Location: ../../view/CampanhaView/listar.php');
     exit;
 }
 
-header('Location: ../../view/Posts/cadastrar.php');
+header('Location: ../../view/CampanhaView/cadastrar.php');
 exit;

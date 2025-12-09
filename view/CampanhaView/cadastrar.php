@@ -1,5 +1,8 @@
 <?php
-require_once __DIR__ . '/../../model/Usuario_class.php';
+if (!defined('ROOT_PATH')) {
+  define('ROOT_PATH', __DIR__ . '/../..');
+}
+require_once ROOT_PATH . '/model/UsuarioModel/Usuario_class.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
 $usuario = $_SESSION['usuario'] ?? null;
 if (!$usuario) {
@@ -22,7 +25,7 @@ if (!$usuario) {
 </head>
 
 <body>
-  <?php include_once __DIR__ . '/../assets/Header_Footer/Header.php'; ?>
+  <?php include_once ROOT_PATH . '/view/assets/Static/Header.php'; ?>
   <main>
     <section class="donation" style="padding-top:6rem;">
       <div class="section-header">
@@ -32,7 +35,7 @@ if (!$usuario) {
         <a href="listar.php" class="btn secondary">Voltar</a>
       </div>
 
-      <form action="../../controller/PostController/add.php" method="post" enctype="multipart/form-data" class="form-container" style="max-width:800px;margin:0 auto;background:var(--secondary-color);padding:2rem;border-radius:12px;">
+      <form action="../../controller/CampanhaController/add.php" method="post" enctype="multipart/form-data" class="form-container" style="max-width:800px;margin:0 auto;background:var(--secondary-color);padding:2rem;border-radius:12px;">
         <div class="form-group">
           <label>Título</label>
           <input type="text" name="titulo" required />
@@ -59,4 +62,4 @@ if (!$usuario) {
       </form>
     </section>
   </main>
-  <?php include_once __DIR__ . '/../assets/Header_Footer/Footer.php'; ?>
+  <?php include_once ROOT_PATH . '/view/assets/Static/Footer.php'; ?>

@@ -79,7 +79,7 @@ $usuario = $_SESSION["usuario"] ?? null;
       <div class="donation-cards-grid">
         <?php
         $postDao = new CampanhaDAO();
-        $rows = $postDao->findAllByTipo('necessidade');
+        $rows = $postDao->findAll();
         $posts = array_slice($rows, 0, 4);
 
         if (count($posts) > 0):

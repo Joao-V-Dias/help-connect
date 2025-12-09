@@ -2,18 +2,13 @@
 if (!defined('ROOT_PATH')) {
   define('ROOT_PATH', __DIR__ . '/../..');
 }
-require_once __DIR__ . '/../../model/UsuarioModel/Usuario_class.php';
-require_once __DIR__ . '/../../model/CampanhaModel/CampanhaDAO_class.php';
+require_once ROOT_PATH . '/model/UsuarioModel/Usuario_class.php';
+require_once ROOT_PATH . '/model/CampanhaModel/CampanhaDAO_class.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
 $usuario = $_SESSION['usuario'] ?? null;
 
-$tipo = $_GET['tipo'] ?? '';
 $dao = new CampanhaDAO();
-if ($tipo === 'necessidade' || $tipo === 'doacao') {
-  $rows = $dao->findAllByTipo($tipo);
-} else {
-  $rows = $dao->findAll();
-}
+$rows = $dao->findAll();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -50,11 +45,6 @@ if ($tipo === 'necessidade' || $tipo === 'doacao') {
               }
               ?>
               <img src="<?php echo htmlspecialchars($img); ?>" alt="<?php echo htmlspecialchars($row['titulo']); ?>">
-              <?php if ($row['tipo'] === 'necessidade'): ?>
-                <span class="card-badge">Necessidade</span>
-              <?php else: ?>
-                <span class="card-badge">Doação</span>
-              <?php endif; ?>
             </div>
             <div class="card-content">
               <h3><?php echo htmlspecialchars($row['titulo']); ?></h3>

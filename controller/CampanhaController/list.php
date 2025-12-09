@@ -1,15 +1,9 @@
 <?php
 require_once __DIR__ . '/../../model/CampanhaModel/CampanhaDAO_class.php';
 
-$tipo = $_GET['tipo'] ?? null; // 'necessidade' or 'doacao' or null
 $dao = new CampanhaDAO();
-if ($tipo) {
-    $posts = $dao->findAllByTipo($tipo);
-} else {
-    $posts = $dao->findAll();
-}
+$posts = $dao->findAll();
 
-// Simple JSON output if requested, otherwise redirect to view
 if (isset($_GET['format']) && $_GET['format'] === 'json') {
     header('Content-Type: application/json');
     echo json_encode($posts);

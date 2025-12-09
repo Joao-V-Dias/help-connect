@@ -1,25 +1,28 @@
 <?php
-require_once __DIR__ . '/../../model/Post_class.php';
-require_once __DIR__ . '/../../model/PostDAO_class.php';
-require_once __DIR__ . '/../../model/Usuario_class.php';
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', __DIR__ . '/../..');
+}
+require_once ROOT_PATH . '/model/CampanhaModel/Campanha_class.php';
+require_once ROOT_PATH . '/model/CampanhaModel/CampanhaDAO_class.php';
+require_once ROOT_PATH . '/model/UsuarioModel/Usuario_class.php';
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 $usuario = $_SESSION['usuario'] ?? null;
 if (!$usuario) {
-    header('Location: ../../view/Usuario/login.php');
+    header('Location: ../../view/UsuarioView/login.php');
     exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = intval($_POST['id'] ?? 0);
-    $dao = new PostDAO();
-    $post = $dao->findById($id);
-    if (!$post) {
+    $dao = new CampanhaDAO();
+    $campanha = $dao->findById($id);
+    if (!$campanha) {
         header('Location: ../../view/Posts/listar.php');
         exit;
     }
     // Only allow owner to edit
-    if ($post->getUsuarioId() != $usuario->getId()) {
+    if ($campanha->getUsuarioId() != $usuario->getId()) {
         header('Location: ../../view/Posts/listar.php');
         exit;
     }
@@ -31,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cidade = trim($_POST['cidade'] ?? '');
 
     // upload image (optional)
-    $imagemPath = $post->getImagem();
+    $imagemPath = $campanha->getImagem();
     if (!empty($_FILES['imagem']['name'])) {
         $uploadDir = __DIR__ . '/../../view/assets/img/necessidades/';
         if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
@@ -43,17 +46,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $post->setTitulo($titulo);
-    $post->setDescricao($descricao);
-    $post->setCategoria($categoria);
-    $post->setTipo($tipo);
-    $post->setCidade($cidade);
-    $post->setImagem($imagemPath);
+    $campanha->setTitulo($titulo);
+    $campanha->setDescricao($descricao);
+    $campanha->setCategoria($categoria);
+    $campanha->setTipo($tipo);
+    $campanha->setCidade($cidade);
+    $campanha->setImagem($imagemPath);
 
-    $dao->update($post);
-    header('Location: ../../view/Posts/ver.php?id=' . $id);
+    $dao->update($campanha);
+    header('Location: ../../view/CampanhaView/ver.php?id=' . $id);
     exit;
 }
 
-header('Location: ../../view/Posts/listar.php');
+header('Location: ../../view/CampanhaView/listar.php');
 exit;

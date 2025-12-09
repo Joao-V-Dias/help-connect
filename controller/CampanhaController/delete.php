@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../model/PostDAO_class.php';
+require_once __DIR__ . '/../../model/CampanhaModel/CampanhaDAO_class.php';
 require_once __DIR__ . '/../../model/Usuario_class.php';
 
 if (session_status() === PHP_SESSION_NONE) session_start();
@@ -15,7 +15,7 @@ if ($id <= 0) {
     exit;
 }
 
-$dao = new PostDAO();
+$dao = new CampanhaDAO();
 $post = $dao->findById($id);
 if (!$post) {
     header('Location: ../../view/Posts/listar.php');

@@ -1,7 +1,10 @@
 <?php
-require_once __DIR__ . '/../../model/PostDAO_class.php';
-require_once __DIR__ . '/../../model/Usuario_class.php';
-require_once __DIR__ . '/../../model/UsuarioDAO_class.php';
+if (!defined('ROOT_PATH')) {
+  define('ROOT_PATH', __DIR__ . '/../..');
+}
+require_once __DIR__ . '/../../model//CampanhaModel/CampanhaDAO_class.php';
+require_once __DIR__ . '/../../model/UsuarioModel/Usuario_class.php';
+require_once __DIR__ . '/../../model/UsuarioModel/UsuarioDAO_class.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
 $usuario = $_SESSION['usuario'] ?? null;
 
@@ -11,7 +14,7 @@ if ($id <= 0) {
   exit;
 }
 
-$dao = new PostDAO();
+$dao = new CampanhaDAO();
 $post = $dao->findById($id);
 if (!$post) {
   header('Location: listar.php');
@@ -32,7 +35,7 @@ if (!$post) {
 </head>
 
 <body>
-  <?php include_once __DIR__ . '/../assets/Header_Footer/Header.php'; ?>
+  <?php include_once ROOT_PATH . '/view/assets/Static/Header.php'; ?>
   <main>
     <section class="donation" style="padding-top:6rem;">
       <div class="section-header">
@@ -96,7 +99,7 @@ if (!$post) {
               }
               ?>
 
-              <div class="author-avatar"><a href="/help-connect/view/Usuario/buscar.php?id=<?php echo htmlspecialchars($post->getUsuarioId()); ?>"><img src="<?php echo $authorImg; ?>" alt="<?php echo $authorName; ?>" /></a></div>
+              <div class="author-avatar"><a href="/help-connect/usuario.php?fun=buscar&id=<?php echo htmlspecialchars($post->getUsuarioId()); ?>"><img src="<?php echo $authorImg; ?>" alt="<?php echo $authorName; ?>" /></a></div>
               <div class="author-info">
                 <div class="author-name">Publicado por <?php echo $authorName; ?></div>
                 <?php if ($autor && $autor->getCidade()): ?>
@@ -111,4 +114,4 @@ if (!$post) {
       </div>
     </section>
   </main>
-  <?php include_once __DIR__ . '/../assets/Header_Footer/Footer.php'; ?>
+  <?php include_once ROOT_PATH . '/view/assets/Static/Footer.php'; ?>

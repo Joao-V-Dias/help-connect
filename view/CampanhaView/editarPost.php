@@ -1,6 +1,9 @@
 <?php
-require_once __DIR__ . '/../../model/PostDAO_class.php';
-require_once __DIR__ . '/../../model/Usuario_class.php';
+if (!defined('ROOT_PATH')) {
+  define('ROOT_PATH', __DIR__ . '/../..');
+}
+require_once ROOT_PATH . '/model/CampanhaModel/CampanhaDAO_class.php';
+require_once ROOT_PATH . '/model/UsuarioModel/Usuario_class.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
 $usuario = $_SESSION['usuario'] ?? null;
 
@@ -10,7 +13,7 @@ if ($id <= 0) {
   exit;
 }
 
-$dao = new PostDAO();
+$dao = new CampanhaDAO();
 $post = $dao->findById($id);
 if (!$post) {
   header('Location: listar.php');
@@ -35,7 +38,7 @@ if (!$usuario || $post->getUsuarioId() != $usuario->getId()) {
 </head>
 
 <body>
-  <?php include_once __DIR__ . '/../assets/Header_Footer/Header.php'; ?>
+  <?php include_once ROOT_PATH . '/view/assets/Static/Header.php'; ?>
   <main>
     <section class="donation" style="padding-top:6rem;">
       <div class="section-header">
@@ -46,7 +49,7 @@ if (!$usuario || $post->getUsuarioId() != $usuario->getId()) {
         <a href="ver.php?id=<?php echo $post->getId(); ?>" class="btn secondary">Cancelar</a>
       </div>
 
-      <form action="../../controller/PostController/edit.php" method="post" enctype="multipart/form-data" class="form-container" style="max-width:800px;margin:0 auto;background:var(--secondary-color);padding:2rem;border-radius:12px;">
+      <form action="../../controller/CampanhaController/edit.php" method="post" enctype="multipart/form-data" class="form-container" style="max-width:800px;margin:0 auto;background:var(--secondary-color);padding:2rem;border-radius:12px;">
         <input type="hidden" name="id" value="<?php echo $post->getId(); ?>" />
         <div class="form-group">
           <label>Título</label>
@@ -86,4 +89,4 @@ if (!$usuario || $post->getUsuarioId() != $usuario->getId()) {
       </form>
     </section>
   </main>
-  <?php include_once __DIR__ . '/../assets/Header_Footer/Footer.php'; ?>
+  <?php include_once ROOT_PATH . '/view/assets/Static/Footer.php'; ?>
