@@ -15,7 +15,7 @@ class CampanhaDAO
     public function create($campanha)
     {
         try {
-            $sql = "INSERT INTO posts (titulo, descricao, categoria, tipo, cidade, usuario_id, imagem, created_at)
+            $sql = "INSERT INTO campanha (titulo, descricao, categoria, tipo, cidade, usuario_id, imagem, created_at)
                 VALUES (:titulo, :descricao, :categoria, :tipo, :cidade, :usuario_id, :imagem, NOW())";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(':titulo', $campanha->getTitulo());
@@ -34,7 +34,7 @@ class CampanhaDAO
 
     public function update(Campanha $campanha)
     {
-        $sql = "UPDATE posts SET titulo=:titulo, descricao=:descricao, categoria=:categoria, tipo=:tipo, cidade=:cidade, imagem=:imagem WHERE id=:id";
+        $sql = "UPDATE campanha SET titulo=:titulo, descricao=:descricao, categoria=:categoria, tipo=:tipo, cidade=:cidade, imagem=:imagem WHERE id=:id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':titulo', $campanha->getTitulo());
         $stmt->bindValue(':descricao', $campanha->getDescricao());
@@ -48,7 +48,7 @@ class CampanhaDAO
 
     public function delete($id)
     {
-        $sql = "DELETE FROM posts WHERE id = :id";
+        $sql = "DELETE FROM campanha WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':id', $id);
         return $stmt->execute();
@@ -56,7 +56,7 @@ class CampanhaDAO
 
     public function findById($id)
     {
-        $sql = "SELECT * FROM posts WHERE id = :id";
+        $sql = "SELECT * FROM campanha WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
@@ -77,7 +77,7 @@ class CampanhaDAO
 
     public function findAll()
     {
-        $sql = "SELECT * FROM posts ORDER BY created_at DESC";
+        $sql = "SELECT * FROM campanha ORDER BY created_at DESC";
         $stmt = $this->conn->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

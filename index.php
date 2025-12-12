@@ -33,13 +33,11 @@ $usuario = $_SESSION["usuario"] ?? null;
           <span>pode</span> ajudar.
         </p>
         <div class="hero-buttons">
-          <a href="./view/Posts/listar.php?tipo=necessidade" class="btn primary">Quero Ajudar</a>
-          <a href="./view/Posts/cadastrar.php?tipo=necessidade" class="btn secondary">Quero criar uma campanha</a>
+          <a href="http://localhost/help-connect/view/CampanhaView/listar.php" class="btn primary">Quero Ajudar</a>
+          <a href="http://localhost/help-connect/view/CampanhaView/cadastrar.php" class="btn secondary">Quero criar uma campanha</a>
         </div>
       </div>
-      <video autoplay muted loop id="video-1" class="hero-img">
-        <source src="./view/assets/img/video/teste1.mp4" type="video/mp4">
-      </video>
+      <img src="./view/assets/img/provisorio/bg.jpg" alt="" class="hero-img">
     </section>
 
     <section class="como-funciona-home">
@@ -74,7 +72,7 @@ $usuario = $_SESSION["usuario"] ?? null;
           <h2>Últimas Necessidades</h2>
           <p class="section-subtitle">Pessoas que estão buscando ajuda agora</p>
         </div>
-        <a href="./view/Posts/listar.php?tipo=necessidade" class="btn secondary">Ver Mais</a>
+        <a href="http://localhost/help-connect/view/CampanhaView/listar.php" class="btn secondary">Ver Mais</a>
       </div>
       <div class="donation-cards-grid">
         <?php
@@ -93,7 +91,7 @@ $usuario = $_SESSION["usuario"] ?? null;
               $isRecent = (strtotime($row['created_at']) >= time() - 7 * 24 * 3600);
             }
         ?>
-            <a href="./view/Posts/ver.php?id=<?php echo htmlspecialchars($row['id']); ?>" class="card">
+            <a href="./view/CampanhaView/ver.php?id=<?php echo htmlspecialchars($row['id']); ?>" class="card">
               <div class="card-image">
                 <img src="<?php echo htmlspecialchars($img); ?>" alt="<?php echo htmlspecialchars($row['titulo']); ?>">
                 <?php if ($isRecent): ?>
@@ -200,7 +198,7 @@ $usuario = $_SESSION["usuario"] ?? null;
       <p>Junte-se a nossa comunidade de pessoas solidárias</p>
       <?php if (!$usuario): ?>
         <div class="cta-buttons">
-          <a href="./view/Usuario/cadastrar.php" class="btn primary">Cadastrar Agora</a>
+          <a href="http://localhost/help-connect/view/UsuarioView/login.php" class="btn primary">Cadastrar Agora</a>
           <a href="./view/sobre.php" class="btn ghost">Saiba Mais Sobre Nós</a>
         </div>
       <?php else: ?>

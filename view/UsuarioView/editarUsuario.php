@@ -79,7 +79,7 @@ $foto = htmlspecialchars($usuario->getFoto());
             </div>
 
             <div class="actions">
-                <button type="submit" name="editar" class="btn primary">Salvar alterações</button>
+                <button type="submit" name="editar" class="btn ghost">Salvar alterações</button>
                 <a href="../../index.php" class="btn ghost">Cancelar</a>
             </div>
         </form>

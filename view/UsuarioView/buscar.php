@@ -25,18 +25,9 @@
 				<div><strong>Telefone:</strong> <?php echo $perfil->getTelefone(); ?></div>
 				<div><strong>Cidade:</strong> <?php echo $perfil->getCidade(); ?></div>
 			</div>
-
-
-
-			<!-- <div class="profile-actions">
-				<a class="btn" href="../../index.php">Voltar</a>
-			</div> -->
 		</div>
 
 	</main>
-	<?php
-	include_once __DIR__ . '/../assets/Static/Footer.php';
-	?>
 </body>
 
 </html>

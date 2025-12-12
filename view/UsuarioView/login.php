@@ -43,8 +43,6 @@ session_start();
       <button type="submit" class="form-button" name="login">Entrar</button>
     </form>
     <div class="form-links">
-      <a href="#">Esqueci minha senha</a>
-      <span>|</span>
       <a href="./cadastrar.php">Criar uma conta</a>
     </div>
   </div>

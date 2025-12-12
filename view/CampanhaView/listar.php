@@ -60,3 +60,4 @@ $rows = $dao->findAll();
     </section>
   </main>
   <?php include_once __DIR__ . '/../assets/Static/Footer.php'; ?>
+</body>

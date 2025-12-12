@@ -10,7 +10,7 @@ $usuario = $_SESSION["usuario"] ?? null;
 ?>
 
 <header>
-  <a href="/help-connect/index.php"><img src="/help-connect/view/assets/img/icon/logo.svg" alt="logo do site" class="logo" /></a>
+  <a href="http://localhost/help-connect"><img src="/help-connect/view/assets/img/icon/logo.svg" alt="logo do site" class="logo" /></a>
   <nav class="menu">
     <a href="/help-connect/view/CampanhaView/listar.php?tipo=necessidade" class="link-header">Campanhas</a>
     <a href="/help-connect/view/sobre.php" class="link-header">Quem somos</a>
